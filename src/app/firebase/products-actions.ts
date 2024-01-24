@@ -19,6 +19,7 @@ export const getProducts = async () => {
 export const getProduct = async (id: TypeIdProduct) => {
   const docRef = doc(db, 'products', id)
   const querySnapshot = await getDoc(docRef)
+  if (!querySnapshot.exists()) throw new Error('Product not found')
   const product = {
     ...querySnapshot.data(), id: querySnapshot.id
   }

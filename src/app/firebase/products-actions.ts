@@ -9,7 +9,7 @@ export const getProducts = async () => {
   querySnapshot.forEach((doc) => {
     const id = doc.id
     const product = {
-      ...doc.data(), id
+      id, ...doc.data()
     }
     products.push(product as TypeProduct)
   })

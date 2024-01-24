@@ -1,6 +1,6 @@
 import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
 import { db } from './DBcore'
-import { type TypeCategory, type TypeProduct } from '@/types'
+import { type TypeIdProduct, type TypeCategory, type TypeProduct } from '@/types'
 
 export const getProducts = async () => {
   const q = query(collection(db, 'products'))
@@ -16,7 +16,7 @@ export const getProducts = async () => {
   return products
 }
 
-export const getProduct = async (id: string) => {
+export const getProduct = async (id: TypeIdProduct) => {
   const docRef = doc(db, 'products', id)
   const querySnapshot = await getDoc(docRef)
   const product = {

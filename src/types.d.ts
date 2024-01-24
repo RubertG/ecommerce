@@ -1,5 +1,8 @@
+export type TypeIdProduct = string
+export type TypeIdCart = string
+
 export interface TypeProduct {
-  id: string
+  id: TypeIdProduct
   title: string
   image: string
   description: string
@@ -11,4 +14,15 @@ export interface TypeProduct {
 export interface TypeCategory {
   name: string
   img: string
+}
+
+export interface TypeProductsCart extends TypeProduct {
+  quantity: number
+}
+
+export interface TypeCart {
+  id: TypeIdCart
+  id_user: string
+  products: TypeProductsCart[]
+  total: number
 }

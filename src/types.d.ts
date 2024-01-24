@@ -1,5 +1,6 @@
 export type TypeIdProduct = string
 export type TypeIdCart = string
+export type TypeIdUser = string
 
 export interface TypeProduct {
   id: TypeIdProduct

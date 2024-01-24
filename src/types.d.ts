@@ -1,6 +1,7 @@
 export type TypeIdProduct = string
 export type TypeIdCart = string
 export type TypeIdUser = string
+export type TypeIdCategory = string
 
 export interface TypeProduct {
   id: TypeIdProduct
@@ -15,6 +16,10 @@ export interface TypeProduct {
 export interface TypeCategory {
   name: string
   img: string
+}
+
+export interface TypeCategoryWithId extends TypeCategory {
+  id: TypeIdCategory
 }
 
 export interface TypeProductsCart extends TypeProduct {

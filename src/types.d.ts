@@ -13,6 +13,20 @@ export interface TypeProduct {
   rate: number
 }
 
+export interface TypeProductsCart extends TypeProduct {
+  quantity: number
+}
+
+export interface TypeCart {
+  id_user: TypeIdUser
+  products: TypeProductsCart[]
+  total: number
+}
+
+export interface TypeCartWithId extends TypeCart {
+  id: TypeIdCart
+}
+
 export interface TypeCategory {
   name: string
   img: string
@@ -20,15 +34,4 @@ export interface TypeCategory {
 
 export interface TypeCategoryWithId extends TypeCategory {
   id: TypeIdCategory
-}
-
-export interface TypeProductsCart extends TypeProduct {
-  quantity: number
-}
-
-export interface TypeCart {
-  id: TypeIdCart
-  id_user: string
-  products: TypeProductsCart[]
-  total: number
 }

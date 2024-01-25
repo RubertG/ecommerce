@@ -1,17 +1,17 @@
-import { type TypeCart, type TypeIdCart } from '@/types'
+import { type TypeCartWithId, type TypeIdCart } from '@/types'
 import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore'
 import { db } from './DBcore'
 
 export const getCarts = async () => {
   const c = collection(db, 'carts')
   const querySnapshot = await getDocs(c)
-  const carts: TypeCart[] = []
+  const carts: TypeCartWithId[] = []
   querySnapshot.forEach((doc) => {
     const cart = {
       ...doc.data(),
       id: doc.id
     }
-    carts.push(cart as TypeCart)
+    carts.push(cart as TypeCartWithId)
   })
   return carts
 }
@@ -22,14 +22,11 @@ export const getCart = async (id: TypeIdCart) => {
   const cart = {
     ...querySnapshot.data(), id: querySnapshot.id
   }
-  return cart as TypeCart
+  return cart as TypeCartWithId
 }
 
-export const addProductsCart = async (idCart: TypeIdCart, cart: Omit<TypeCart, 'id'>) => {
-  try {
-    const docRef = doc(db, 'carts', idCart)
-    await setDoc(docRef, cart)
-  } catch (error) {
-    return error
-  }
+export const addCart = async (idCart: TypeIdCart, cart: Omit<TypeCartWithId, 'id'>) => {
+  const docRef = doc(db, 'carts', idCart)
+  await setDoc(docRef, cart)
+  return docRef
 }

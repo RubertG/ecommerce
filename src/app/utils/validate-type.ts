@@ -38,5 +38,11 @@ export function validateObject<T> (obj: any, expectedShape: Record<keyof T, stri
       return false
     }
   }
+
+  const objKeys = Object.keys(obj as object)
+  if (objKeys.length !== Object.keys(expectedShape).length) {
+    return false
+  }
+
   return true
 }

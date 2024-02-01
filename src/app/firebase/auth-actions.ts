@@ -10,14 +10,8 @@ export const signInWithGoogle = async () => {
   await signInWithPopup(auth, provider)
 }
 
-interface Props {
-  setUser: (user: User | null) => void
-  setLoading: (loading: boolean) => void
-}
+type Props = (user: User | null) => void
 
-export const authState = ({ setUser, setLoading }: Props) => {
-  onAuthStateChanged(auth, (userCurrent) => {
-    setUser(userCurrent)
-    setLoading(false)
-  })
+export const authState = (callback: Props) => {
+  onAuthStateChanged(auth, callback)
 }

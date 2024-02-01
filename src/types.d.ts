@@ -35,3 +35,10 @@ export interface TypeCategory {
 export interface TypeCategoryWithId extends TypeCategory {
   id: TypeIdCategory
 }
+
+export interface TypeAuthOptions {
+  loading: boolean
+  user: User | null
+  signOut: () => Promise<void>
+  signIn: () => Promise<void>
+}

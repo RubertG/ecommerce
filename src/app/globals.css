@@ -31,3 +31,29 @@ body {
     text-wrap: balance;
   }
 }
+
+.animate-enter {
+  animation: enter .15s ease-in-out both;
+}
+
+.animate-leave {
+  animation: leave .15s ease-in-out both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes leave {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

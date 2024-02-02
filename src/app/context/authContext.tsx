@@ -1,6 +1,7 @@
 import { type FC, createContext } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { type TypeAuthOptions } from '@/types'
+
 export const authContext = createContext<TypeAuthOptions | null>(null)
 
 interface Props {

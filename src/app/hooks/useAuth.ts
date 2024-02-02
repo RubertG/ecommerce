@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { authState, logout, signInWithGoogle } from '../firebase/auth-actions'
 import { type User } from 'firebase/auth'
-import { toastOptions } from '../utils/toasts'
+import { customToast } from '../utils/toasts'
 
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null)
@@ -18,12 +18,12 @@ export const useAuth = () => {
 
   const signOut = async () => {
     await logout()
-    toastOptions('Signed out')
+    customToast({ text: 'Signed out' })
   }
 
   const signIn = async () => {
     await signInWithGoogle()
-    toastOptions('Signed in')
+    customToast({ text: 'Signed in' })
   }
 
   return {

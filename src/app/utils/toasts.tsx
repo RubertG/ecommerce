@@ -18,6 +18,6 @@ export const customToast = ({ text, duration = 1800 }: Props) => {
       </p>
     </div>
   ), {
-    duration: 1800
+    duration
   })
 }

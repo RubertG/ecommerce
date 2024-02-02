@@ -11,12 +11,13 @@ interface Context {
 export async function GET (req: Request, { params }: Context) {
   try {
     const { id } = params
-    if (id == null) throw new Error('The name category is required')
-    const category = await getCart(id)
-    return NextResponse.json(category)
+    if (id == null) throw new Error('The id cart is required')
+    const cart = await getCart(id)
+    if (cart == null) throw new Error('The cart not exist')
+    return NextResponse.json(cart)
   } catch (error: any) {
     return NextResponse.json({
-      message: 'Error obtaining the category',
+      message: 'Error obtaining the cart',
       error: error.message
     })
   }

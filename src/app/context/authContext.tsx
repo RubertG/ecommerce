@@ -1,3 +1,5 @@
+'use client'
+
 import { type FC, createContext } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import { type TypeAuthOptions } from '@/types'

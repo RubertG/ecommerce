@@ -21,10 +21,16 @@ export const FilterByPrice = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === MIN_PRICE) {
+      if (parseFloat(e.target.value) < 0) {
+        e.target.value = '0'
+      }
       setPriceRange([e.target.value, priceRange[1]])
     }
 
     if (e.target.name === MAX_PRICE) {
+      if (parseFloat(e.target.value) < 0) {
+        e.target.value = '0'
+      }
       setPriceRange([priceRange[0], e.target.value])
     }
   }
@@ -38,7 +44,7 @@ export const FilterByPrice = ({
           name={MIN_PRICE}
           placeholder="10"
           min={0}
-          value={minPrice ?? ''}
+          defaultValue={minPrice ?? ''}
           className='text-black'
           onChange={(e) => { handleChange(e) }} />
       </label>
@@ -49,7 +55,7 @@ export const FilterByPrice = ({
           name={MAX_PRICE}
           placeholder="1000"
           min={0}
-          value={maxPrice ?? ''}
+          defaultValue={maxPrice ?? ''}
           className='text-black'
           onChange={(e) => { handleChange(e) }} />
       </label>
@@ -80,11 +86,23 @@ export const FilterByRate = ({
   const [rateRange, setRateRange] = useState<[string | null, string | null]>([null, null])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === MIN_PRICE) {
+    if (e.target.name === MIN_RATE) {
+      if (parseFloat(e.target.value) < 0) {
+        e.target.value = '0'
+      }
+      if (parseFloat(e.target.value) > 5) {
+        e.target.value = '5'
+      }
       setRateRange([e.target.value, rateRange[1]])
     }
 
-    if (e.target.name === MAX_PRICE) {
+    if (e.target.name === MAX_RATE) {
+      if (parseFloat(e.target.value) < 0) {
+        e.target.value = '0'
+      }
+      if (parseFloat(e.target.value) > 5) {
+        e.target.value = '5'
+      }
       setRateRange([rateRange[0], e.target.value])
     }
   }
@@ -99,7 +117,7 @@ export const FilterByRate = ({
           placeholder="0"
           min={0}
           max={5}
-          value={minRate ?? ''}
+          defaultValue={minRate ?? ''}
           className='text-black'
           onChange={(e) => { handleChange(e) }} />
       </label>
@@ -111,7 +129,7 @@ export const FilterByRate = ({
           placeholder="5"
           min={0}
           max={5}
-          value={maxRate ?? ''}
+          defaultValue={maxRate ?? ''}
           className='text-black'
           onChange={(e) => { handleChange(e) }} />
       </label>
@@ -124,7 +142,7 @@ export const FilterByRate = ({
           ...((maxPrice != null) && { maxPrice })
         }).toString()}`}
       >
-        Filter by price
+        Filter by rate
       </Link>
     </form>
   )

@@ -37,6 +37,7 @@ export const FilterByPrice = ({
           type="number"
           name={MIN_PRICE}
           placeholder="10"
+          min={0}
           value={minPrice ?? ''}
           className='text-black'
           onChange={(e) => { handleChange(e) }} />
@@ -47,6 +48,7 @@ export const FilterByPrice = ({
           type="number"
           name={MAX_PRICE}
           placeholder="1000"
+          min={0}
           value={maxPrice ?? ''}
           className='text-black'
           onChange={(e) => { handleChange(e) }} />
@@ -58,6 +60,68 @@ export const FilterByPrice = ({
           ...((priceRange[1] != null) && { [MAX_PRICE]: priceRange[1] }),
           ...((minRate != null) && { minRate }),
           ...((maxRate != null) && { maxRate })
+        }).toString()}`}
+      >
+        Filter by price
+      </Link>
+    </form>
+  )
+}
+
+export const FilterByRate = ({
+  searchParams: {
+    search,
+    [MAX_PRICE]: maxPrice,
+    [MIN_PRICE]: minPrice,
+    [MAX_RATE]: maxRate,
+    [MIN_RATE]: minRate
+  }
+}: Props) => {
+  const [rateRange, setRateRange] = useState<[string | null, string | null]>([null, null])
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.name === MIN_PRICE) {
+      setRateRange([e.target.value, rateRange[1]])
+    }
+
+    if (e.target.name === MAX_PRICE) {
+      setRateRange([rateRange[0], e.target.value])
+    }
+  }
+
+  return (
+    <form>
+      <label>
+        <p>Min</p>
+        <input
+          type="number"
+          name={MIN_RATE}
+          placeholder="0"
+          min={0}
+          max={5}
+          value={minRate ?? ''}
+          className='text-black'
+          onChange={(e) => { handleChange(e) }} />
+      </label>
+      <label>
+        <p>Max</p>
+        <input
+          type="number"
+          name={MAX_RATE}
+          placeholder="5"
+          min={0}
+          max={5}
+          value={maxRate ?? ''}
+          className='text-black'
+          onChange={(e) => { handleChange(e) }} />
+      </label>
+      <Link
+        href={`?${new URLSearchParams({
+          ...((search != null) && { search }),
+          ...((rateRange[0] != null) && { [MIN_PRICE]: rateRange[0] }),
+          ...((rateRange[1] != null) && { [MAX_PRICE]: rateRange[1] }),
+          ...((minPrice != null) && { minPrice }),
+          ...((maxPrice != null) && { maxPrice })
         }).toString()}`}
       >
         Filter by price

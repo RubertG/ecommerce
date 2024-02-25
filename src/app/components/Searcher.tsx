@@ -2,10 +2,14 @@
 
 import Link from 'next/link'
 import { MagnifyingGlassIcon } from './Icons'
-import { type ChangeEvent, useState } from 'react'
+import { type ChangeEvent, useState, type FC } from 'react'
 
-const Searcher = () => {
-  const [text, setText] = useState('')
+interface Props {
+  search?: string | null
+}
+
+const Searcher: FC<Props> = ({ search }) => {
+  const [text, setText] = useState(search ?? '')
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)
@@ -17,10 +21,11 @@ const Searcher = () => {
         type="text"
         className='text-black'
         placeholder="Search products of interest..."
+        defaultValue={search ?? ''}
         onChange={(e) => { handleChange(e) }}
       />
       <Link
-        href={`?${new URLSearchParams({
+        href={`/products?${new URLSearchParams({
           ...((text !== '') && { search: text })
         }).toString()}`}
       >

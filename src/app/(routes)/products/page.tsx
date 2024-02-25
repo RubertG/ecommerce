@@ -13,7 +13,7 @@ const ProductsPage: FC<Props> = ({ searchParams }) => {
     <>
       <header>
         <h1>Products</h1>
-        <Searcher />
+        <Searcher search={searchParams.search} />
         <FilterByPrice searchParams={searchParams} />
         <FilterByRate searchParams={searchParams} />
       </header>

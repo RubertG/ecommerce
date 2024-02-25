@@ -136,8 +136,8 @@ export const FilterByRate = ({
       <Link
         href={`?${new URLSearchParams({
           ...((search != null) && { search }),
-          ...((rateRange[0] != null) && { [MIN_PRICE]: rateRange[0] }),
-          ...((rateRange[1] != null) && { [MAX_PRICE]: rateRange[1] }),
+          ...((rateRange[0] != null) && { [MIN_RATE]: rateRange[0] }),
+          ...((rateRange[1] != null) && { [MAX_RATE]: rateRange[1] }),
           ...((minPrice != null) && { minPrice }),
           ...((maxPrice != null) && { maxPrice })
         }).toString()}`}

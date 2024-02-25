@@ -15,12 +15,13 @@ const Searcher = () => {
     <search>
       <input
         type="text"
+        className='text-black'
         placeholder="Search products of interest..."
         onChange={(e) => { handleChange(e) }}
       />
       <Link
         href={`?${new URLSearchParams({
-          search: text
+          ...((text !== '') && { search: text })
         }).toString()}`}
       >
         <MagnifyingGlassIcon className='fill-blue-600 w-8' />

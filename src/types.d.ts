@@ -1,3 +1,5 @@
+import { type MAX_PRICE, type MAX_RATE, type MIN_PRICE, type MIN_RATE } from './const'
+
 export type TypeIdProduct = string
 export type TypeIdCart = string
 export type TypeIdUser = string
@@ -41,4 +43,22 @@ export interface TypeAuthOptions {
   user: User | null
   signOut: () => Promise<void>
   signIn: () => Promise<void>
+}
+
+export interface TypeSearchParams {
+  search: string | null
+  [MIN_PRICE]: string | null
+  [MAX_PRICE]: string | null
+  [MIN_RATE]: string | null
+  [MAX_RATE]: string | null
+}
+
+export type TypeActionReducer =
+  { type: 'RESET' }
+  | { type: 'SET', payload: { products: TypeProduct[], searchParams: TypeSearchParams } }
+  | { type: 'FILTER-BY-SEARCHPARAMS', payload: TypeSearchParams }
+
+export interface TypeStateReducer {
+  products: TypeProduct[] | null
+  filterProducts: TypeProduct[] | null
 }

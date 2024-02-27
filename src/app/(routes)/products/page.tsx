@@ -1,5 +1,6 @@
 import { ContainerProducts } from '@/app/components/ContainerProducts'
-import { FilterByPrice, FilterByRate } from '@/app/components/Filters'
+import { FilterByPrice } from '@/app/components/FilterByPrice'
+import { FilterByRate } from '@/app/components/FilterByRate'
 import Searcher from '@/app/components/Searcher'
 import { type TypeSearchParams } from '@/types'
 import { type FC } from 'react'

@@ -8,7 +8,7 @@ interface Props {
 }
 
 const CartPage: FC<Props> = async ({ params: { id } }) => {
-  const data = await fetch(`http://localhost:3000/api/carts/${id}`)
+  const data = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/carts/${id}`)
   const cart = await data.json() as TypeCartWithId
 
   if (cart.id != null) {

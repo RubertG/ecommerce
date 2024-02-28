@@ -8,7 +8,8 @@ export const filterProducts = (
     [MAX_PRICE]: maxPrice,
     [MIN_PRICE]: minPrice,
     [MAX_RATE]: maxRate,
-    [MIN_RATE]: minRate
+    [MIN_RATE]: minRate,
+    category
   }: TypeSearchParams
 ) => {
   const filteredProducts = products.filter((product) => {
@@ -29,6 +30,10 @@ export const filterProducts = (
     }
 
     if (minRate != null && product.rate < parseFloat(minRate)) {
+      return false
+    }
+
+    if (category != null && category !== product.category.name) {
       return false
     }
 

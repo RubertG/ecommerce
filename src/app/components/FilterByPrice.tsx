@@ -2,7 +2,7 @@
 import { MAX_PRICE, MAX_RATE, MIN_PRICE, MIN_RATE } from '@/const'
 import { type TypeSearchParams } from '@/types'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface Props {
   searchParams: TypeSearchParams
@@ -14,10 +14,15 @@ export const FilterByPrice = ({
     [MAX_PRICE]: maxPrice,
     [MIN_PRICE]: minPrice,
     [MAX_RATE]: maxRate,
-    [MIN_RATE]: minRate
+    [MIN_RATE]: minRate,
+    category
   }
 }: Props) => {
   const [priceRange, setPriceRange] = useState<[string | null, string | null]>([null, null])
+
+  useEffect(() => {
+    setPriceRange([null, null])
+  }, [search])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === MIN_PRICE) {
@@ -65,7 +70,8 @@ export const FilterByPrice = ({
           ...((priceRange[0] != null) && { [MIN_PRICE]: priceRange[0] }),
           ...((priceRange[1] != null) && { [MAX_PRICE]: priceRange[1] }),
           ...((minRate != null) && { minRate }),
-          ...((maxRate != null) && { maxRate })
+          ...((maxRate != null) && { maxRate }),
+          ...((category != null) && { category })
         }).toString()}`}
       >
         Filter by price

@@ -1,4 +1,4 @@
-import { type CATEGORIES, type MAX_PRICE, type MAX_RATE, type MIN_PRICE, type MIN_RATE } from './const'
+import { type CATEGORY, type CATEGORIES, type MAX_PRICE, type MAX_RATE, type MIN_PRICE, type MIN_RATE } from './const'
 
 export type TypeIdProduct = string
 export type TypeIdCart = string
@@ -51,6 +51,7 @@ export interface TypeSearchParams {
   [MAX_PRICE]: string | null
   [MIN_RATE]: string | null
   [MAX_RATE]: string | null
+  [CATEGORY]: TypeCategories | null
 }
 
 export type TypeActionReducer =

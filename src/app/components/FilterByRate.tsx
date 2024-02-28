@@ -78,8 +78,8 @@ export const FilterByRate = ({
           ...((search != null) && { search }),
           ...((rateRange[0] != null) && { [MIN_RATE]: rateRange[0] }),
           ...((rateRange[1] != null) && { [MAX_RATE]: rateRange[1] }),
-          ...((minPrice != null) && { minPrice }),
-          ...((maxPrice != null) && { maxPrice }),
+          ...((minPrice != null) && { [MIN_PRICE]: minPrice }),
+          ...((maxPrice != null) && { [MAX_PRICE]: maxPrice }),
           ...((category != null) && { category })
         }).toString()}`}
       >

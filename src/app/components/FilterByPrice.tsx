@@ -69,8 +69,8 @@ export const FilterByPrice = ({
           ...((search != null) && { search }),
           ...((priceRange[0] != null) && { [MIN_PRICE]: priceRange[0] }),
           ...((priceRange[1] != null) && { [MAX_PRICE]: priceRange[1] }),
-          ...((minRate != null) && { minRate }),
-          ...((maxRate != null) && { maxRate }),
+          ...((minRate != null) && { [MIN_RATE]: minRate }),
+          ...((maxRate != null) && { [MAX_RATE]: maxRate }),
           ...((category != null) && { category })
         }).toString()}`}
       >

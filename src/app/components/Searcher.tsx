@@ -62,7 +62,7 @@ const Searcher: FC<Props> = ({ searchParams }) => {
             return (
               <Link
                 key={key}
-                href={`?${new URLSearchParams({
+                href={`/products?${new URLSearchParams({
                   ...urlAux,
                   category: value
                 }).toString()}`}

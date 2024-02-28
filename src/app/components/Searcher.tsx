@@ -53,7 +53,7 @@ const Searcher: FC<Props> = ({ searchParams }) => {
       </Link>
       <footer>
         <Link
-          href={`?${new URLSearchParams(urlAux).toString()}`}
+          href={'/products'}
         >
           All
         </Link>

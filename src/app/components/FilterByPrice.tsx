@@ -2,7 +2,7 @@
 import { MAX_PRICE, MAX_RATE, MIN_PRICE, MIN_RATE } from '@/const'
 import { type TypeSearchParams } from '@/types'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface Props {
   searchParams: TypeSearchParams
@@ -18,9 +18,16 @@ export const FilterByPrice = ({
     category
   }
 }: Props) => {
-  const [priceRange, setPriceRange] = useState<[string | null, string | null]>([null, null])
+  const [priceRange, setPriceRange] = useState<[string | null, string | null]>([
+    minPrice ?? null,
+    maxPrice ?? null
+  ])
+  const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
+    if (formRef.current != null) {
+      formRef.current.reset()
+    }
     setPriceRange([null, null])
   }, [search])
 
@@ -41,7 +48,7 @@ export const FilterByPrice = ({
   }
 
   return (
-    <form>
+    <form ref={formRef}>
       <label>
         <p>Min</p>
         <input

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { MagnifyingGlassIcon } from './Icons'
-import { type ChangeEvent, useState, type FC } from 'react'
+import { type ChangeEvent, useState, type FC, useEffect, useRef } from 'react'
 import { type TypeSearchParams } from '@/types'
 import { CATEGORIES, MAX_PRICE, MAX_RATE, MIN_PRICE, MIN_RATE } from '@/const'
 
@@ -29,6 +29,14 @@ const Searcher: FC<Props> = ({ searchParams }) => {
       [MAX_PRICE]: searchParams?.['max-price']
     })
   }
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (searchParams?.search == null && inputRef.current != null) {
+      setText('')
+      inputRef.current.value = ''
+    }
+  }, [searchParams?.search])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)
@@ -38,6 +46,7 @@ const Searcher: FC<Props> = ({ searchParams }) => {
     <search>
       <input
         type="text"
+        ref={inputRef}
         className='text-black'
         placeholder="Search products of interest..."
         defaultValue={searchParams?.search ?? ''}

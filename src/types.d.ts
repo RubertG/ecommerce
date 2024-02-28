@@ -1,4 +1,4 @@
-import { type MAX_PRICE, type MAX_RATE, type MIN_PRICE, type MIN_RATE } from './const'
+import { type CATEGORIES, type MAX_PRICE, type MAX_RATE, type MIN_PRICE, type MIN_RATE } from './const'
 
 export type TypeIdProduct = string
 export type TypeIdCart = string
@@ -11,7 +11,7 @@ export interface TypeProduct {
   image: string
   description: string
   price: number
-  category: Category
+  category: TypeCategory
   rate: number
 }
 
@@ -30,7 +30,7 @@ export interface TypeCartWithId extends TypeCart {
 }
 
 export interface TypeCategory {
-  name: string
+  name: TypeCategories
   img: string
 }
 
@@ -62,3 +62,5 @@ export interface TypeStateReducer {
   products: TypeProduct[] | null
   filterProducts: TypeProduct[] | null
 }
+
+export type TypeCategories = typeof CATEGORIES[keyof typeof CATEGORIES]

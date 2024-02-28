@@ -1,4 +1,5 @@
 'use client'
+
 import { type TypeSearchParams, type TypeProduct } from '@/types'
 import CardProduct from './CardProduct'
 import { useProductsReducer } from '../hooks/useProductsReducer'

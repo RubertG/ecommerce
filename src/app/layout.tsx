@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
-import Nav from './components/Nav'
 import { Toaster } from 'react-hot-toast'
 import { AuthContextProvider } from './context/authContext'
-
-const inter = Inter({ subsets: ['latin'] })
+import { inter } from './fonts/fonts'
+import { Footer } from './components/Footer'
 
 export const metadata: Metadata = {
   title: "Luco's store",
@@ -19,12 +17,12 @@ export default function RootLayout ({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-gradient-principal min-h-screen`}>
         <AuthContextProvider>
-          <Nav />
           {children}
-          <Toaster />
         </AuthContextProvider>
+        <Toaster />
+        <Footer />
       </body>
     </html>
   )

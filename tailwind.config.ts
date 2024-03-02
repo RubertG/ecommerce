@@ -9,8 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       boxShadow: {
-        'gray-custom': '0px 0px 8px 1px rgba(153,153,153,0.4)',
-        'card-custom': '0px 0px 12px -6px rgba(0,0,0,0.4)'
+        'gray-custom': '0px 0px 8px 1px rgba(153,153,153,0.1)',
+        'card-custom': '0px 0px 12px -6px rgba(0,0,0,0.4)',
+        'red-custom': '0px 0px 10px 2px rgb(248,113,113,0.3)',
+        'blue-custom': '0px 0px 10px 2px rgba(13,157,234,0.3)'
       },
       backgroundImage: {
         'gradient-blue': 'linear-gradient(-90deg, rgba(13,157,234,1) 0%, rgba(13,90,132,1) 100%)',

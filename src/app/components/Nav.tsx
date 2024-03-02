@@ -60,7 +60,7 @@ function Nav ({ dark = false }: Props) {
                   </li>
                   <li>
                     <button
-                      className='py-[0.125rem] px-4 bg-gradient-red font-medium rounded-lg border-bright-red-800 text-Lochmara-50 border-2 hover:shadow-gray-custom transition-shadow flex justify-center items-center gap-1'
+                      className='py-[0.125rem] px-4 bg-gradient-red font-medium rounded-lg border-bright-red-800 text-Lochmara-50 border-2 hover:shadow-red-custom transition-shadow flex justify-center items-center gap-1'
                       onClick={() => { void signOut() }}
                     >
                       <p className='text-nowrap'>Log out</p>
@@ -81,7 +81,7 @@ function Nav ({ dark = false }: Props) {
                   </li>
                   <li>
                     <button
-                      className='py-[0.125rem] px-4 bg-gradient-blue font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-gray-custom transition-shadow'
+                      className='py-[0.125rem] px-4 bg-gradient-blue font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow '
                       onClick={() => { void signIn() }}
                     >
                       Log in

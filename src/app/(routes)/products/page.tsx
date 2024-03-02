@@ -12,14 +12,19 @@ interface Props {
 const ProductsPage: FC<Props> = ({ searchParams }) => {
   return (
     <>
-      <header>
-        <h1>Products</h1>
+      <header
+        className='flex flex-col gap-2 items-center justify-center mt-[4.5rem]'
+      >
         <Searcher searchParams={searchParams} />
+        <section
+          className='flex items-center justify-center gap-2 flex-wrap'
+        >
         <FilterByPrice searchParams={searchParams} />
         <FilterByRate searchParams={searchParams} />
+        </section>
       </header>
       <main>
-        <ContainerProducts searchParams={searchParams}/>
+        <ContainerProducts searchParams={searchParams} />
       </main>
     </>
   )

@@ -1,9 +1,14 @@
 import Nav from '../components/Nav'
 
-const layout = () => {
+interface Props {
+  children: React.ReactNode
+}
+
+const layout = ({ children }: Props) => {
   return (
     <>
       <Nav />
+      {children}
     </>
   )
 }

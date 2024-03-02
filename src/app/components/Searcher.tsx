@@ -45,7 +45,7 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
 
   return (
     <search
-      className={`z-10 w-full max-w-xl ${classNameContainer ?? ''}`}
+      className={`w-full max-w-xl ${classNameContainer ?? ''}`}
     >
       <form
         className='flex flex-row justify-between items-center gap-2 px-3 py-2 rounded-2xl border-2 border-gray-custom bg-white-custom shadow-card-custom'
@@ -72,7 +72,7 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
       >
         <Link
           href={'/products'}
-          className='bg-white-custom border-2 border-gray-custom shadow-card-custom px-3 py-1 rounded-lg text-sm text-mercury-950 hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition'
+          className='bg-white-custom border-2 border-gray-custom shadow-card-custom px-3 py-1 rounded-lg text-sm text-text-gray hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition'
         >
           All products
         </Link>
@@ -85,7 +85,7 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
                   ...urlAux,
                   category: value
                 }).toString()}`}
-                className='bg-white-custom border-2 border-gray-custom shadow-card-custom px-3 py-1 rounded-lg text-sm text-mercury-950 hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition'
+                className='bg-white-custom border-2 border-gray-custom shadow-card-custom px-3 py-1 rounded-lg text-sm text-text-gray hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition'
               >
                 {value[0].toLocaleUpperCase() + value.slice(1)}
               </Link>

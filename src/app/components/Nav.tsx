@@ -26,7 +26,7 @@ function Nav ({ dark = false }: Props) {
 
   return (
     <nav
-      className={`${dark ? '' : 'bg-principal-white'} px-5 py-4 fixed top-0 left-0 w-full z-10`}
+      className={`${dark ? '' : 'bg-principal-white'} px-5 py-4 fixed top-0 left-0 w-full z-50`}
     >
       <div
         className='flex flex-row justify-between items-center max-w-5xl m-auto'

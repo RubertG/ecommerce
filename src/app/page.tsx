@@ -20,7 +20,7 @@ async function Page () {
         <div
           className='absolute object-cover object-center h-full w-full bg-gradient-gray'
         ></div>
-        <Searcher classNameContainer='mb-32' />
+        <Searcher classNameContainer='z-10 mb-32' />
       </header>
       <section className='max-w-4xl m-auto my-20 grid grid-cols-[35%,32.5%,32.5%] grid-rows-2 gap-3'>
         <article

@@ -52,9 +52,15 @@ export const FilterByRate = ({
   }
 
   return (
-    <form ref={formRef}>
-      <label>
-        <p>Min</p>
+    <form ref={formRef}
+      className='flex gap-2'
+    >
+      <label
+        className='flex items-center justify-center gap-3 px-3 py-1 bg-white-custom rounded-lg shadow-card-custom border-2 border-gray-custom'
+      >
+        <p
+          className='text-text-gray'
+        >Min</p>
         <input
           type="number"
           name={MIN_RATE}
@@ -62,11 +68,15 @@ export const FilterByRate = ({
           min={0}
           max={5}
           defaultValue={minRate ?? ''}
-          className='text-black'
+          className='text-mercury-950 border border-mercury-200 bg-mercury-100 rounded-md px-1 w-8 text-center appearance-none focus:outline focus:outline-mercury-300 text-sm'
           onChange={(e) => { handleChange(e) }} />
       </label>
-      <label>
-        <p>Max</p>
+      <label
+        className='flex items-center justify-center gap-3 px-3 py-1 bg-white-custom rounded-lg shadow-card-custom border-2 border-gray-custom'
+      >
+        <p
+          className='text-text-gray'
+        >Max</p>
         <input
           type="number"
           name={MAX_RATE}
@@ -74,10 +84,11 @@ export const FilterByRate = ({
           min={0}
           max={5}
           defaultValue={maxRate ?? ''}
-          className='text-black'
+          className='text-mercury-950 border border-mercury-200 bg-mercury-100 rounded-md px-1 w-8 text-center appearance-none focus:outline focus:outline-mercury-300 text-sm'
           onChange={(e) => { handleChange(e) }} />
       </label>
       <Link
+        className='px-2 bg-gradient-blue-light rounded-lg border-Lochmara-200 border-2 grid place-content-center text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
         href={`?${new URLSearchParams({
           ...((search != null) && { search }),
           ...((rateRange[0] != null) && { [MIN_RATE]: rateRange[0] }),

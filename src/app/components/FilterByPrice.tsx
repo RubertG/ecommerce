@@ -48,30 +48,41 @@ export const FilterByPrice = ({
   }
 
   return (
-    <form ref={formRef}>
-      <label>
-        <p>Min</p>
+    <form ref={formRef}
+      className='flex gap-2'
+    >
+      <label
+        className='flex items-center justify-center gap-3 px-2 py-1 bg-white-custom rounded-lg shadow-card-custom border-2 border-gray-custom'
+      >
+        <p
+          className='text-text-gray'
+        >Min</p>
         <input
           type="number"
           name={MIN_PRICE}
           placeholder="10"
           min={0}
           defaultValue={minPrice ?? ''}
-          className='text-black'
+          className='text-mercury-950 border border-mercury-200 bg-mercury-100 rounded-md px-1 w-[3.2rem] text-center appearance-none focus:outline focus:outline-mercury-300 text-sm'
           onChange={(e) => { handleChange(e) }} />
       </label>
-      <label>
-        <p>Max</p>
+      <label
+        className='flex items-center justify-center gap-3 px-3 py-1 bg-white-custom rounded-lg shadow-card-custom border-2 border-gray-custom'
+      >
+        <p
+          className='text-text-gray'
+        >Max</p>
         <input
           type="number"
           name={MAX_PRICE}
           placeholder="1000"
           min={0}
           defaultValue={maxPrice ?? ''}
-          className='text-black'
+          className='text-mercury-950 border border-mercury-200 bg-mercury-100 rounded-md px-1 w-[3.2rem] text-center appearance-none focus:outline focus:outline-mercury-300 text-sm'
           onChange={(e) => { handleChange(e) }} />
       </label>
       <Link
+        className='px-2 bg-gradient-blue-light rounded-lg border-Lochmara-200 border-2 grid place-content-center text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
         href={`?${new URLSearchParams({
           ...((search != null) && { search }),
           ...((priceRange[0] != null) && { [MIN_PRICE]: priceRange[0] }),

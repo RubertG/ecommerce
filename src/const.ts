@@ -15,7 +15,7 @@ export const CATEGORY = 'category'
 
 export const CATEGORIES = {
   womensClothing: "women's clothing",
-  mensClothing: "men's clothing",
+  electronics: 'electronics',
   caps: 'caps',
-  electronics: 'electronics'
+  mensClothing: "men's clothing"
 } as const

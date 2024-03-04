@@ -9,7 +9,7 @@ async function Page () {
     <>
       <Nav dark={true} />
       <header
-        className='w-full min-h-screen flex items-end justify-center'
+        className='w-full h-[47rem] md:min-h-dvh flex items-end justify-center'
       >
         <img
           src='/joyas.webp'
@@ -22,9 +22,9 @@ async function Page () {
         ></div>
         <Searcher classNameContainer='z-10 mb-32' />
       </header>
-      <section className='max-w-4xl m-auto my-20 grid grid-cols-[35%,32.5%,32.5%] grid-rows-2 gap-3'>
+      <section className='max-w-4xl m-auto my-20 px-3 lg:px-0 grid md:grid-cols-2 lg:grid-cols-[35%,32.5%,32.5%] lg:grid-rows-2 gap-3'>
         <article
-          className='p-4 bg-white-custom rounded-2xl border border-gray-custom shadow-card-custom col-span-1 row-span-2'
+          className='p-4 bg-white-custom rounded-2xl border border-gray-custom shadow-card-custom lg:col-span-1 lg:row-span-2'
         >
           <h2
             className={`${quicksand.className} text-2xl font-bold text-dodger-blue-800 text-center mb-3`}
@@ -36,7 +36,7 @@ async function Page () {
           </p>
         </article>
         <article
-          className='p-4 bg-white-custom rounded-2xl border border-gray-custom shadow-card-custom col-span-2'
+          className='p-4 bg-white-custom rounded-2xl border border-gray-custom shadow-card-custom lg:col-span-2'
         >
           <h2
             className={`${quicksand.className} text-2xl font-bold text-dodger-blue-800 text-center mb-3`}

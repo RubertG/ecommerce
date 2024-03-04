@@ -45,7 +45,7 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
 
   return (
     <search
-      className={`w-full max-w-xl ${classNameContainer ?? ''}`}
+      className={`w-full max-w-xl px-3 sm:px-0 ${classNameContainer ?? ''}`}
     >
       <form
         className='flex flex-row justify-between items-center gap-2 px-3 py-2 rounded-2xl border-2 border-gray-custom bg-white-custom shadow-card-custom'
@@ -68,16 +68,18 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
         </Link>
       </form>
       <footer
-        className='flex items-center justify-between gap-2 mt-2 flex-wrap'
+        className='flex items-center justify-center sm:justify-between gap-2 mt-2 flex-wrap'
       >
         <Link
           href={'/products'}
-          className='bg-white-custom border-2 border-gray-custom shadow-card-custom px-3 py-1 rounded-lg text-sm text-text-gray hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition'
+          className={`border-2 shadow-card-custom px-3 py-1 rounded-lg text-sm hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition ${searchParams?.category === null ? 'bg-Lochmara-600 text-white-custom border-Lochmara-700' : 'bg-white-custom border-gray-custom text-text-gray'}`}
         >
           All products
         </Link>
         {
           Object.entries(CATEGORIES).map(([key, value]) => {
+            const isActive = searchParams?.category === value
+
             return (
               <Link
                 key={key}
@@ -85,7 +87,7 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
                   ...urlAux,
                   category: value
                 }).toString()}`}
-                className='bg-white-custom border-2 border-gray-custom shadow-card-custom px-3 py-1 rounded-lg text-sm text-text-gray hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition'
+                className={`border-2 shadow-card-custom px-3 py-1 rounded-lg text-sm hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition ${isActive ? 'bg-Lochmara-600 text-white-custom border-Lochmara-700' : 'bg-white-custom border-gray-custom text-text-gray'}`}
               >
                 {value[0].toLocaleUpperCase() + value.slice(1)}
               </Link>

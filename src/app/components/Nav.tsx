@@ -26,22 +26,22 @@ function Nav ({ dark = false }: Props) {
 
   return (
     <nav
-      className={`${dark ? '' : 'bg-principal-white'} px-5 py-4 fixed top-0 left-0 w-full z-50`}
+      className={`${dark ? 'backdrop-blur-md sm:backdrop-blur-0' : 'bg-principal-white'} px-5 py-4 fixed top-0 left-0 w-full z-50`}
     >
       <div
         className='flex flex-row justify-between items-center max-w-5xl m-auto'
       >
         <Link
           href='/'
-          className={`${quicksand.className} ${dark ? 'text-Lochmara-50' : 'text-Lochmara-950'} text-2xl font-bold hover:text-blue-500 transition-colors`}
+          className={`${quicksand.className} ${dark ? 'text-Lochmara-50' : 'text-Lochmara-950'} text-xl sm:text-2xl font-bold hover:text-blue-500 transition-colors`}
         >
           Luco's store
         </Link>
         <ul
-          className='flex gap-4 items-center justify-center'
+          className='flex gap-2 sm:gap-4 items-center justify-center flex-wrap'
         >
           <li
-            className='w-7 h-7'
+            className='w-6 h-6 sm:w-7 sm:h-7'
           >
             <button
               onClick={handleClickCart}
@@ -54,13 +54,13 @@ function Nav ({ dark = false }: Props) {
               ? (
                 <>
                   <li
-                    className='mx-2 w-8 h-8 bg-green-950 grid place-content-center rounded-full text-white-custom select-none'
+                    className='sm:mx-2 w-7 h-7 sm:w-8 sm:h-8 text-sm sm:text-base bg-green-950 grid place-content-center rounded-full text-white-custom select-none'
                   >
                     <p>{user.displayName?.[0]}</p>
                   </li>
                   <li>
                     <button
-                      className='py-[0.125rem] px-4 bg-gradient-red font-medium rounded-lg border-bright-red-800 text-Lochmara-50 border-2 hover:shadow-red-custom transition-shadow flex justify-center items-center gap-1'
+                      className='py-[0.125rem] px-4 bg-gradient-red text-sm sm:text-base font-medium rounded-lg border-bright-red-800 text-Lochmara-50 border-2 hover:shadow-red-custom transition-shadow flex justify-center items-center gap-1'
                       onClick={() => { void signOut() }}
                     >
                       <p className='text-nowrap'>Log out</p>
@@ -73,7 +73,7 @@ function Nav ({ dark = false }: Props) {
                 <>
                   <li>
                     <button
-                      className='ml-2 py-[0.125rem] px-4 bg-gradient-blue-light font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
+                      className='sm:ml-2 py-[0.125rem] px-4 bg-gradient-blue-light text-sm sm:text-base font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
                       onClick={() => { void signIn() }}
                     >
                       Sign in
@@ -81,7 +81,7 @@ function Nav ({ dark = false }: Props) {
                   </li>
                   <li>
                     <button
-                      className='py-[0.125rem] px-4 bg-gradient-blue font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow '
+                      className='py-[0.125rem] px-4 bg-gradient-blue text-sm sm:text-base font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow '
                       onClick={() => { void signIn() }}
                     >
                       Log in

@@ -1,3 +1,4 @@
+import { SkeletonTheme } from 'react-loading-skeleton'
 import Nav from '../components/Nav'
 
 interface Props {
@@ -8,7 +9,9 @@ const layout = ({ children }: Props) => {
   return (
     <>
       <Nav />
-      {children}
+      <SkeletonTheme baseColor="#c2c2c2" highlightColor="#9b9b9b">
+        {children}
+      </SkeletonTheme>
     </>
   )
 }

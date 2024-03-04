@@ -5,7 +5,6 @@ import CardProduct from './CardProduct'
 import { useProductsReducer } from '../hooks/useProductsReducer'
 import { type FC } from 'react'
 import CardProductSkeleton from './CardProductSkeleton'
-import { SkeletonTheme } from 'react-loading-skeleton'
 
 interface Props {
   searchParams: TypeSearchParams
@@ -19,20 +18,18 @@ export const ContainerProducts: FC<Props> = ({ searchParams }) => {
       <section
         className='flex flex-wrap gap-2 md:gap-3 px-3 my-10 justify-center items-center max-w-5xl m-auto'
       >
-        <SkeletonTheme baseColor="#c2c2c2" highlightColor="#9b9b9b">
-          {
-            Array.from({ length: 12 }).map((_, index) => (
-              <CardProductSkeleton key={index} />
-            ))
-          }
-        </SkeletonTheme>
+        {
+          Array.from({ length: 8 }).map((_, index) => (
+            <CardProductSkeleton key={index} />
+          ))
+        }
       </section>
     )
   }
 
   return (
     <section
-      className='flex flex-wrap gap-2 md:gap-3 px-3 my-10 justify-center items-center max-w-5xl m-auto'
+      className='flex flex-wrap gap-2 md:gap-3 px-3 my-10 justify-center items-center max-w-5xl m-auto lg:justify-between xl:px-0'
     >
       {
         products?.map((product: TypeProduct) => (

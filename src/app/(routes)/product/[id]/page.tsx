@@ -1,4 +1,6 @@
+import CardProductSkeleton from '@/app/components/CardProductSkeleton'
 import { MoreProducts } from '@/app/components/MoreProducts'
+import Searcher from '@/app/components/Searcher'
 import { type TypeProduct } from '@/types'
 import { Suspense, type FC } from 'react'
 
@@ -18,14 +20,26 @@ const ProductPage: FC<Props> = async ({ params: { id } }) => {
   const product = await getData(id)
 
   return (
-    <div>
-      {
-        product.price
-      }
-      <Suspense fallback={<p>Loading...</p>}>
-        <MoreProducts category={product.category.name} />
+    <>
+      <header
+        className='flex flex-col gap-2 items-center justify-center mt-[4.5rem]'
+      >
+        <Searcher />
+      </header>
+      <Suspense fallback={
+        <section
+          className='flex flex-wrap gap-2 md:gap-3 px-3 my-10 justify-center items-center max-w-5xl m-auto'
+        >
+          {
+            Array.from({ length: 4 }).map((_, index) => (
+              <CardProductSkeleton key={index} />
+            ))
+          }
+        </section>
+      }>
+        <MoreProducts category={product.category.name} id={id} />
       </Suspense>
-    </div>
+    </>
   )
 }
 

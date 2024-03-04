@@ -9,7 +9,7 @@ async function Page () {
     <>
       <Nav dark={true} />
       <header
-        className='w-full h-[47rem] md:min-h-dvh flex items-end justify-center'
+        className='w-full h-[45rem] md:min-h-dvh flex items-end justify-center'
       >
         <img
           src='/joyas.webp'

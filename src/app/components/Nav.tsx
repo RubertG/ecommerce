@@ -3,7 +3,7 @@
 
 import { useRouter } from 'next/navigation'
 import { ExitIcon, ShoppingCartIcon } from './Icons'
-import { customToast } from '../utils/toasts'
+import { AlertToast } from './toasts'
 import { useAuthContext } from '../hooks/useAuthContext'
 import Link from 'next/link'
 import { quicksand } from '../fonts/fonts'
@@ -20,7 +20,9 @@ function Nav ({ dark = false }: Props) {
     if (user != null) {
       router.push(`/cart/${user.uid}`)
     } else {
-      customToast({ text: 'You must log in' })
+      AlertToast({
+        text: 'You must log in!'
+      })
     }
   }
 

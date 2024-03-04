@@ -16,7 +16,7 @@ export const useProductsReducer = ({
   searchParams
 }: Params) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     void getProducts()

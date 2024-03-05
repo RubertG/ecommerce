@@ -1,9 +1,9 @@
-import { type TypeStateReducer, type TypeActionReducer } from '@/types'
+import { type TypeStateReducerProducts, type TypeActionReducerProducts } from '@/types'
 import { filterProducts } from '../utils/filter-products'
 
-export const reducer = (
-  state: TypeStateReducer,
-  action: TypeActionReducer): TypeStateReducer => {
+export const reducerProducts = (
+  state: TypeStateReducerProducts,
+  action: TypeActionReducerProducts): TypeStateReducerProducts => {
   if (action.type === 'SET') {
     const products = filterProducts(action.payload.products, action.payload.searchParams)
     return {

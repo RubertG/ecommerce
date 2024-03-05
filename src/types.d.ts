@@ -45,6 +45,14 @@ export interface TypeAuthOptions {
   signIn: () => Promise<void>
 }
 
+export interface TypeCartOptions {
+  addCart: (product: TypeProduct) => Promise<void>
+  deleteCart: (product: TypeIdCart) => Promise<void>
+  cart: TypeCartWithId | null
+  sumProduct: (product: TypeProduct) => Promise<void>
+  resProduct: (product: TypeProduct) => Promise<void>
+}
+
 export interface TypeSearchParams {
   search: string | null
   [MIN_PRICE]: string | null
@@ -54,14 +62,21 @@ export interface TypeSearchParams {
   [CATEGORY]: TypeCategories | null
 }
 
-export type TypeActionReducer =
+export type TypeActionReducerProducts =
   { type: 'RESET' }
   | { type: 'SET', payload: { products: TypeProduct[], searchParams: TypeSearchParams } }
   | { type: 'FILTER-BY-SEARCHPARAMS', payload: TypeSearchParams }
 
-export interface TypeStateReducer {
+export interface TypeStateReducerProducts {
   products: TypeProduct[] | null
   filterProducts: TypeProduct[] | null
 }
+
+export type TypeActionReducerCart =
+  { type: 'ADD_PRODUCT', payload: TypeProduct }
+  | { type: 'DELETE_PRODUCT', payload: TypeIdProduct }
+  | { type: 'SET', payload: TypeCartWithId }
+  | { type: 'SUM_QUANTITY', payload: TypeProduct }
+  | { type: 'RES_QUANTITY', payload: TypeProduct }
 
 export type TypeCategories = typeof CATEGORIES[keyof typeof CATEGORIES]

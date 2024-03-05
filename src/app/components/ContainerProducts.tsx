@@ -16,7 +16,7 @@ export const ContainerProducts: FC<Props> = ({ searchParams }) => {
   if (loading) {
     return (
       <section
-        className='flex flex-wrap gap-2 md:gap-3 px-3 my-10 justify-center items-center max-w-5xl m-auto'
+        className='flex flex-wrap gap-2 md:gap-3 px-3 my-10 xl:px-0 justify-center items-center max-w-5xl m-auto'
       >
         {
           Array.from({ length: 8 }).map((_, index) => (
@@ -29,7 +29,7 @@ export const ContainerProducts: FC<Props> = ({ searchParams }) => {
 
   return (
     <section
-      className='flex flex-wrap gap-2 md:gap-3 px-3 my-10 justify-center items-center max-w-5xl m-auto lg:justify-between xl:px-0'
+      className='flex flex-wrap gap-2 md:gap-3 px-3 my-10 justify-center items-center max-w-5xl m-auto xl:px-0'
     >
       {
         products?.map((product: TypeProduct) => (

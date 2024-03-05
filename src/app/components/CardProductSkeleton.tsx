@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const CardProductSkeleton = () => {
   return (
     <article
-      className='block border md:border-2 shadow-gray-custom border-gray-custom p-2 rounded-lg w-44 md:w-60 bg-white-custom'
+      className='block border md:border-2 shadow-gray-custom border-gray-custom p-2 rounded-lg w-44 md:w-56 lg:w-60 xl:w-[15.4rem] bg-white-custom'
     >
       <Skeleton
         className='w-full aspect-square rounded-lg'

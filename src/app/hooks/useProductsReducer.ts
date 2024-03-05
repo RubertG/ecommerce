@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useReducer, useState } from 'react'
-import { reducer } from '../reducer/reducer'
-import { type TypeSearchParams, type TypeProduct, type TypeStateReducer } from '@/types'
+import { reducerProducts } from '../reducer/reducerProducts'
+import { type TypeSearchParams, type TypeProduct, type TypeStateReducerProducts } from '@/types'
 
-const initialState: TypeStateReducer = {
+const initialState: TypeStateReducerProducts = {
   filterProducts: null,
   products: null
 }
@@ -15,7 +15,7 @@ interface Params {
 export const useProductsReducer = ({
   searchParams
 }: Params) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducerProducts, initialState)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

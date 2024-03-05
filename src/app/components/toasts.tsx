@@ -47,6 +47,25 @@ export const SuccessToast = ({
   })
 }
 
+export const ProcessToast = ({
+  text,
+  duration = 1800,
+  position = 'bottom-left',
+  className = ''
+}: Props) => {
+  toast.custom((t) => (
+    <div
+      className={`${t.visible ? 'animate-enter' : 'animate-leave'
+        } flex gap-1 items-center justify-center px-2 py-1 rounded-md border-2 border-yellow-400 bg-yellow-300 text-gray-900 ${className}`}
+    >
+      {text}
+    </div>
+  ), {
+    duration,
+    position
+  })
+}
+
 export const AlertToast = ({
   text,
   duration = 1800,
@@ -58,7 +77,7 @@ export const AlertToast = ({
       className={`${t.visible ? 'animate-enter' : 'animate-leave'
         } flex gap-1 items-center justify-center px-2 py-1 rounded-md border-2 border-red-950 bg-red-900 text-gray-100 ${className}`}
     >
-      <AlertIcon className='fill-green-100 w-7 h-7'/>
+      <AlertIcon className='fill-red-600 w-7 h-7'/>
       {text}
     </div>
   ), {

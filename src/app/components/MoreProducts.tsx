@@ -33,12 +33,12 @@ export const MoreProducts: FC<Props> = async ({ limit = 4, category = null, id }
   const products = await getData(category, id)
 
   return (
-    <section>
+    <>
       <h2
-        className={`${quicksand.className} max-w-5xl text-xl px-3 xl:px-0 md:text-2xl font-bold m-auto text-dodger-blue-950 text-center lg:text-left`}
+        className={`${quicksand.className} max-w-5xl px-3 xl:px-0 text-2xl font-bold m-auto text-Lochmara-950 text-center lg:text-left`}
       >More products</h2>
       <main
-        className='flex flex-wrap gap-2 md:gap-3 px-3 xl:px-0 mt-5 mb-10 justify-center items-center lg:justify-between max-w-5xl m-auto'
+        className='flex flex-wrap gap-2 md:gap-3 px-3 xl:px-0 mt-5 mb-10 justify-center items-center max-w-5xl m-auto'
       >
         {
           Array.isArray(products) && products.slice(0, limit).map((product) => {
@@ -46,6 +46,6 @@ export const MoreProducts: FC<Props> = async ({ limit = 4, category = null, id }
           })
         }
       </main>
-    </section>
+    </>
   )
 }

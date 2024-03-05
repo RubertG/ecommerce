@@ -1,4 +1,5 @@
 import ProtectedRoute from '@/app/components/ProtectedRoute'
+import Searcher from '@/app/components/Searcher'
 import React, { type FC } from 'react'
 
 interface Props {
@@ -7,7 +8,10 @@ interface Props {
 
 const LayoutCartPage: FC<Props> = ({ children }) => {
   return (
-    <ProtectedRoute>{children}</ProtectedRoute>
+    <ProtectedRoute>
+      <Searcher />
+      {children}
+    </ProtectedRoute>
   )
 }
 

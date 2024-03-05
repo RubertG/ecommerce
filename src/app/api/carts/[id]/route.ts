@@ -1,10 +1,10 @@
 import { getCart } from '@/app/firebase/cart-actions'
-import { type TypeIdCart } from '@/types'
+import { type TypeIdUser } from '@/types'
 import { NextResponse } from 'next/server'
 
 interface Context {
   params: {
-    id?: TypeIdCart
+    id?: TypeIdUser
   }
 }
 

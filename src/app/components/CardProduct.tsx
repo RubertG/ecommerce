@@ -7,7 +7,7 @@ import { quicksand } from '../fonts/fonts'
 const CardProduct: FC<TypeProduct> = ({ image, price, title, rate, description, id }) => {
   return (
     <Link
-      className='block border md:border-2 shadow-gray-custom border-gray-custom p-2 rounded-lg w-44 md:w-56 lg:w-60 xl:w-[15.4rem] bg-white-custom hover:scale-105 transition-transform'
+      className='block border md:border-2 shadow-gray-custom border-gray-custom p-2 rounded-lg w-44 md:w-56 lg:w-60 xl:w-[15.4rem] bg-white-custom hover:scale-105 transition-transform focus:scale-95'
       href={`/product/${id}`}
     >
       <img

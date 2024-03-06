@@ -4,6 +4,7 @@ import { type TypeCartOptions, type TypeStateReducerCart, type TypeProduct } fro
 import { useEffect, useReducer } from 'react'
 import { reducerCart } from '../reducer/reducerCart'
 import { useAuthContext } from './useAuthContext'
+import { isEqual } from 'lodash'
 import { AlertToast, ProcessToast, SuccessToast } from '../components/toasts'
 
 const initialState: TypeStateReducerCart = {
@@ -29,20 +30,18 @@ export const useCart = (): TypeCartOptions => {
   useEffect(() => {
     if (user == null) return
     void getData()
-    return () => { }
   }, [user])
 
   useEffect(() => {
     if (state.error === '') return
     AlertToast({ text: state.error })
     dispatch({ type: 'RESET_ERROR' })
-    return () => { }
   }, [state.error])
 
   useEffect(() => {
-    if (user == null || state.cart === state.cartPrev) return
+    if (user == null || (Boolean(isEqual(state.cart, state.cartPrev)))) return
+    console.log()
     void saveData()
-    return () => { }
   }, [state.cart])
 
   const saveData = async () => {

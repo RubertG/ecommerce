@@ -29,6 +29,7 @@ export const useCart = (): TypeCartOptions => {
   useEffect(() => {
     if (user == null) return
     void getData()
+    return () => { }
   }, [user])
 
   useEffect(() => {
@@ -40,8 +41,8 @@ export const useCart = (): TypeCartOptions => {
 
   useEffect(() => {
     if (user == null || state.cart === state.cartPrev) return
-    console.log(state)
     void saveData()
+    return () => { }
   }, [state.cart])
 
   const saveData = async () => {

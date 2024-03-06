@@ -20,8 +20,6 @@ export const reducerCart = (
   }
 
   if (action.type === 'FETCH_ERROR') {
-    console.log(state)
-
     return {
       ...state,
       error: 'Unable to retrieve the cart'

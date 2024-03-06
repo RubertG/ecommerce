@@ -46,11 +46,11 @@ export interface TypeAuthOptions {
 }
 
 export interface TypeCartOptions {
-  addCart: (product: TypeProduct) => Promise<void>
-  deleteCart: (product: TypeIdCart) => Promise<void>
-  cart: TypeCartWithId | null
-  sumProduct: (product: TypeProduct) => Promise<void>
-  resProduct: (product: TypeProduct) => Promise<void>
+  addProduct: (product: TypeProduct) => void
+  deleteProduct: (product: TypeIdCart) => void
+  state: TypeStateReducerCart
+  sumProduct: (product: TypeProduct) => void
+  resProduct: (product: TypeProduct) => void
 }
 
 export interface TypeSearchParams {
@@ -72,10 +72,18 @@ export interface TypeStateReducerProducts {
   filterProducts: TypeProduct[] | null
 }
 
+export interface TypeStateReducerCart {
+  error: string
+  cart: TypeCartWithId
+  cartPrev: TypeCartWithId
+}
+
 export type TypeActionReducerCart =
   { type: 'ADD_PRODUCT', payload: TypeProduct }
   | { type: 'DELETE_PRODUCT', payload: TypeIdProduct }
-  | { type: 'SET', payload: TypeCartWithId }
+  | { type: 'FETCH_SUCCESS', payload: TypeCartWithId }
+  | { type: 'FETCH_ERROR' }
+  | { type: 'RESET_ERROR' }
   | { type: 'SUM_QUANTITY', payload: TypeProduct }
   | { type: 'RES_QUANTITY', payload: TypeProduct }
 

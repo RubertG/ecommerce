@@ -1,120 +1,114 @@
 'use client'
 
-import { type TypeIdProduct, type TypeCartOptions, type TypeCartWithId, type TypeProduct } from '@/types'
-import { useAuthContext } from './useAuthContext'
-import { AlertToast, ProcessToast, SuccessToast } from '../components/toasts'
+import { type TypeCartOptions, type TypeStateReducerCart, type TypeProduct } from '@/types'
 import { useEffect, useReducer } from 'react'
 import { reducerCart } from '../reducer/reducerCart'
+import { useAuthContext } from './useAuthContext'
+import { AlertToast, ProcessToast, SuccessToast } from '../components/toasts'
+
+const initialState: TypeStateReducerCart = {
+  error: '',
+  cart: {
+    id: '',
+    id_user: '',
+    products: [],
+    total: 0
+  },
+  cartPrev: {
+    id: '',
+    id_user: '',
+    products: [],
+    total: 0
+  }
+}
 
 export const useCart = (): TypeCartOptions => {
   const { user } = useAuthContext()
-  const [cart, dispatch] = useReducer(reducerCart, null)
+  const [state, dispatch] = useReducer(reducerCart, initialState)
 
   useEffect(() => {
-    const setCart = async () => {
-      const data = await getCart()
-      dispatch({ type: 'SET', payload: data })
-    }
-    void setCart()
-  }, [])
+    if (user == null) return
+    void getData()
+  }, [user])
 
-  const getCart = async (): Promise<TypeCartWithId> => {
-    const res = await fetch(`/api/carts/${user.uid}`)
-    const data = await res.json()
-    if (data.products != null) {
-      return data as TypeCartWithId
-    }
-    return {
-      id: `cart-${user.uid}`,
-      products: [],
-      id_user: user.uid,
-      total: 0
-    }
+  useEffect(() => {
+    if (state.error === '') return
+    AlertToast({ text: state.error })
+    dispatch({ type: 'RESET_ERROR' })
+    return () => { }
+  }, [state.error])
+
+  useEffect(() => {
+    if (user == null || state.cart === state.cartPrev) return
+    console.log(state)
+    void saveData()
+  }, [state.cart])
+
+  const saveData = async () => {
+    ProcessToast({ text: 'Adding product...' })
+    await fetch('/api/carts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(state.cart)
+    })
+    SuccessToast({ text: 'Product added!' })
   }
 
-  const addCart = async (product: TypeProduct): Promise<void> => {
-    if (user == null) {
-      AlertToast({ text: 'Please log in' })
-      return
-    }
-    const cartAux = Object.assign({}, cart)
+  const getData = async () => {
     try {
-      ProcessToast({ text: 'Adding at cart...' })
-      dispatch({ type: 'ADD_PRODUCT', payload: product })
-      await fetch('/api/carts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cart)
-      })
-      SuccessToast({ text: 'Added to cart' })
+      const res = await fetch(`/api/carts/${user.uid}`)
+      let data = await res.json()
+      if (data.products == null) {
+        data = {
+          id: `cart-${user.uid}`,
+          id_user: user.uid,
+          products: [],
+          total: 0
+        }
+      }
+      dispatch({ type: 'FETCH_SUCCESS', payload: data })
     } catch (error) {
-      dispatch({ type: 'SET', payload: cartAux })
-      AlertToast({ text: 'Error adding at cart' })
+      dispatch({ type: 'FETCH_ERROR' })
     }
   }
 
-  const deleteCart = async (idProduct: TypeIdProduct): Promise<void> => {
+  const addProduct = (product: TypeProduct) => {
     if (user == null) {
-      AlertToast({ text: 'Please log in' })
+      AlertToast({ text: 'You need to log in' })
       return
     }
-    const cartAux = Object.assign({}, cart)
-    try {
-      ProcessToast({ text: 'Remove at cart...' })
-      dispatch({ type: 'DELETE_PRODUCT', payload: idProduct })
-      await fetch('/api/carts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cart)
-      })
-      SuccessToast({ text: 'Remove to cart' })
-    } catch (error) {
-      dispatch({ type: 'SET', payload: cartAux })
-      AlertToast({ text: 'Error Remove at cart' })
-    }
+    dispatch({ type: 'ADD_PRODUCT', payload: product })
   }
 
-  const sumProduct = async (product: TypeProduct) => {
+  const deleteProduct = (idProduct: string) => {
     if (user == null) {
-      AlertToast({ text: 'Please log in' })
+      AlertToast({ text: 'You need to log in' })
       return
     }
-    const cartAux = Object.assign({}, cart)
+    dispatch({ type: 'DELETE_PRODUCT', payload: idProduct })
+  }
+
+  const sumProduct = (product: TypeProduct) => {
+    if (user == null) {
+      AlertToast({ text: 'You need to log in' })
+      return
+    }
     dispatch({ type: 'SUM_QUANTITY', payload: product })
-    try {
-      await fetch('/api/carts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cart)
-      })
-    } catch (error) {
-      dispatch({ type: 'SET', payload: cartAux })
-    }
   }
 
-  const resProduct = async (product: TypeProduct) => {
+  const resProduct = (product: TypeProduct) => {
     if (user == null) {
-      AlertToast({ text: 'Please log in' })
+      AlertToast({ text: 'You need to log in' })
       return
     }
-    const cartAux = Object.assign({}, cart)
-    try {
-      dispatch({ type: 'RES_QUANTITY', payload: product })
-      await fetch('/api/carts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cart)
-      })
-    } catch (error) {
-      dispatch({ type: 'SET', payload: cartAux })
-    }
+    dispatch({ type: 'RES_QUANTITY', payload: product })
   }
 
   return {
-    addCart,
-    deleteCart,
+    deleteProduct,
+    addProduct,
+    state,
     sumProduct,
-    resProduct,
-    cart
+    resProduct
   }
 }

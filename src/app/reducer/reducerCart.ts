@@ -1,68 +1,125 @@
-import { type TypeCartWithId, type TypeActionReducerCart } from '@/types'
-import { AlertToast } from '../components/toasts'
+import { type TypeActionReducerCart, type TypeStateReducerCart } from '@/types'
 
 export const reducerCart = (
-  state: TypeCartWithId | null,
-  action: TypeActionReducerCart): TypeCartWithId | null => {
-  if (action.type === 'SET') {
-    return action.payload
+  state: TypeStateReducerCart,
+  action: TypeActionReducerCart
+): TypeStateReducerCart => {
+  if (action.type === 'RESET_ERROR') {
+    return {
+      ...state,
+      error: ''
+    }
+  }
+
+  if (action.type === 'FETCH_SUCCESS') {
+    return {
+      error: '',
+      cart: action.payload,
+      cartPrev: action.payload
+    }
+  }
+
+  if (action.type === 'FETCH_ERROR') {
+    console.log(state)
+
+    return {
+      ...state,
+      error: 'Unable to retrieve the cart'
+    }
   }
 
   if (action.type === 'ADD_PRODUCT') {
-    if (state == null) return state
-    const index = state.products.findIndex((p) => p.id === action.payload.id)
-    if (index !== -1) {
-      AlertToast({ text: 'Product already added' })
-      return state
+    const index = state.cart.products.findIndex(product => product.id === action.payload.id)
+    if (index === -1) {
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          products: [...state.cart.products, { ...action.payload, quantity: 1 }],
+          total: state.cart.total + action.payload.price
+        },
+        cartPrev: state.cart
+      }
     }
     return {
       ...state,
-      products: [...state.products, { ...action.payload, quantity: 1 }],
-      total: state.total + action.payload.price
-    }
-  }
-
-  if (action.type === 'SUM_QUANTITY') {
-    if (state == null) return state
-    let total = 0
-    return {
-      ...state,
-      products: state.products.map(
-        (product) => {
-          if (product.id === action.payload.id) {
-            return { ...product, quantity: product.quantity + 1 }
-          }
-          total += product.quantity * product.price
-          return product
-        }
-      ),
-      total
-    }
-  }
-
-  if (action.type === 'RES_QUANTITY') {
-    if (state == null) return state
-    let total = 0
-    return {
-      ...state,
-      products: state.products.map(
-        (product) => {
-          if (product.id === action.payload.id && product.quantity - 1 !== 0) {
-            return { ...product, quantity: product.quantity - 1 }
-          }
-          total += product.quantity * product.price
-          return product
-        }
-      ),
-      total
+      error: 'Product already added'
     }
   }
 
   if (action.type === 'DELETE_PRODUCT') {
-    if (state == null) return state
+    let total = state.cart.total
+    const newCart = state.cart.products.filter((product) => {
+      if (product.id === action.payload) {
+        total -= product.price * product.quantity
+        return false
+      }
+      return true
+    })
+
+    if (newCart === state.cart.products) {
+      return {
+        ...state,
+        error: 'Product not found'
+      }
+    }
+
     return {
       ...state,
-      products: state.products.filter(product => product.id !== action.payload)
+      cart: {
+        ...state.cart,
+        products: newCart,
+        total
+      },
+      cartPrev: state.cart
+    }
+  }
+
+  if (action.type === 'SUM_QUANTITY') {
+    const index = state.cart.products.findIndex(product => product.id === action.payload.id)
+    if (index === -1) {
+      return {
+        ...state,
+        error: 'Product not found'
+      }
+    }
+    const newCart = [...state.cart.products]
+    newCart[index].quantity += 1
+    return {
+      ...state,
+      cart: {
+        ...state.cart,
+        products: newCart,
+        total: state.cart.total + action.payload.price
+      },
+      cartPrev: state.cart
+    }
+  }
+
+  if (action.type === 'RES_QUANTITY') {
+    const newCart = state.cart.products.filter(product => {
+      if (product.id === action.payload.id) {
+        product.quantity -= 1
+      }
+      if (product.quantity >= 0) {
+        return true
+      }
+      return false
+    })
+    if (newCart === state.cart.products) {
+      return {
+        ...state,
+        error: 'Product not found'
+      }
+    }
+    return {
+      ...state,
+      cart: {
+        ...state.cart,
+        products: newCart,
+        total: state.cart.total - action.payload.price
+      },
+      cartPrev: state.cart
     }
   }
 

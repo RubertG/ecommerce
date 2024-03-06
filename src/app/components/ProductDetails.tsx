@@ -4,10 +4,11 @@ import React, { type FC } from 'react'
 import { StartIcon } from './Icons'
 import { quicksand } from '../fonts/fonts'
 import { type TypeProduct } from '@/types'
-import { useCart } from '../hooks/useCart'
+import { useCartContext } from '../hooks/useCartContext'
+import { SuccessToast } from './toasts'
 
 export const ProductDetails: FC<TypeProduct> = ({ image, price, rate, title, description, id, category }) => {
-  const { addCart } = useCart()
+  const { addProduct } = useCartContext()
 
   return (
     <section
@@ -47,13 +48,13 @@ export const ProductDetails: FC<TypeProduct> = ({ image, price, rate, title, des
           >
             <button
               className='py-[0.125rem] px-4 bg-gradient-blue-light text-sm sm:text-base font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
-              onClick={() => { void addCart({ image, price, rate, title, description, id, category }) }}
+              onClick={() => { addProduct({ id, category, description, image, price, rate, title }) }}
             >
               Add cart
             </button>
             <button
               className='py-[0.125rem] px-4 bg-gradient-blue text-sm sm:text-base font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow '
-              onClick={() => { }}
+              onClick={() => { SuccessToast({ text: 'Coming soon...' }) }}
             >
               Buy
             </button>

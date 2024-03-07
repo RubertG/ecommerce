@@ -1,9 +1,18 @@
 import { type TypeActionReducerCart, type TypeStateReducerCart } from '@/types'
+import { isEqual } from 'lodash'
 
 export const reducerCart = (
   state: TypeStateReducerCart,
   action: TypeActionReducerCart
 ): TypeStateReducerCart => {
+  if (action.type === 'SET_ERROR') {
+    return {
+      ...state,
+      cart: state.cartPrev,
+      error: action.payload
+    }
+  }
+
   if (action.type === 'RESET_ERROR') {
     return {
       ...state,
@@ -13,32 +22,28 @@ export const reducerCart = (
 
   if (action.type === 'FETCH_SUCCESS') {
     return {
+      ...state,
       error: '',
       cart: action.payload,
       cartPrev: action.payload
     }
   }
 
-  if (action.type === 'FETCH_ERROR') {
-    return {
-      ...state,
-      error: 'Unable to retrieve the cart'
-    }
-  }
-
   if (action.type === 'ADD_PRODUCT') {
     const index = state.cart.products.findIndex(product => product.id === action.payload.id)
     if (index === -1) {
+      const newProducts = [...state.cart.products, { ...action.payload, quantity: 1 }]
+
       return {
         ...state,
         cart: {
           ...state.cart,
-          products: [...state.cart.products, { ...action.payload, quantity: 1 }],
+          products: newProducts,
           total: state.cart.total + action.payload.price
-        },
-        cartPrev: state.cart
+        }
       }
     }
+
     return {
       ...state,
       error: 'Product already added'
@@ -46,16 +51,14 @@ export const reducerCart = (
   }
 
   if (action.type === 'DELETE_PRODUCT') {
-    let total = state.cart.total
     const newCart = state.cart.products.filter((product) => {
-      if (product.id === action.payload) {
-        total -= product.price * product.quantity
+      if (product.id === action.payload.id) {
         return false
       }
       return true
     })
 
-    if (newCart === state.cart.products) {
+    if (isEqual(newCart, state.cart.products)) {
       return {
         ...state,
         error: 'Product not found'
@@ -67,9 +70,8 @@ export const reducerCart = (
       cart: {
         ...state.cart,
         products: newCart,
-        total
-      },
-      cartPrev: state.cart
+        total: state.cart.total - action.payload.price * action.payload.quantity
+      }
     }
   }
 
@@ -82,24 +84,23 @@ export const reducerCart = (
       }
     }
     const newCart = [...state.cart.products]
-    newCart[index].quantity += 1
+    newCart[index].quantity = action.payload.quantity
     return {
       ...state,
       cart: {
         ...state.cart,
         products: newCart,
         total: state.cart.total + action.payload.price
-      },
-      cartPrev: state.cart
+      }
     }
   }
 
   if (action.type === 'RES_QUANTITY') {
     const newCart = state.cart.products.filter(product => {
       if (product.id === action.payload.id) {
-        product.quantity -= 1
+        product.quantity = action.payload.quantity
       }
-      if (product.quantity >= 0) {
+      if (product.quantity > 0) {
         return true
       }
       return false
@@ -116,8 +117,7 @@ export const reducerCart = (
         ...state.cart,
         products: newCart,
         total: state.cart.total - action.payload.price
-      },
-      cartPrev: state.cart
+      }
     }
   }
 

@@ -1,27 +1,11 @@
-import { type TypeCartWithId } from '@/types'
-import { type FC } from 'react'
+import { CartProducts } from '@/app/components/CartProducts'
+import { MoreProducts } from '@/app/components/MoreProducts'
 
-interface Props {
-  params: {
-    id: string
-  }
-}
-
-const CartPage: FC<Props> = async ({ params: { id } }) => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/carts/${id}`)
-  const cart = await data.json() as TypeCartWithId
-
-  if (cart.id != null) {
-    return (
-      <>
-        Cart: { id }
-      </>
-    )
-  }
-
+const CartPage = async () => {
   return (
     <>
-      Cart not exist
+      <CartProducts />
+      <MoreProducts />
     </>
   )
 }

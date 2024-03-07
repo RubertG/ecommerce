@@ -1,10 +1,30 @@
 interface Props {
   className?: string
+  width?: string
+  height?: string
 }
 
 export const ExitIcon = ({ className = '' }: Props) => {
   return (
     <svg fill="#000000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={className}><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"></path></g></svg>
+  )
+}
+
+export const PlusIcon = ({ className = '' }: Props) => {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M12 6V18" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}></path> </g></svg>
+  )
+}
+
+export const MinusIcon = ({ className = '' }: Props) => {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0" ></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12L18 12" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}></path> </g></svg>
+  )
+}
+
+export const TrashIcon = ({ className = '', width = '10px', height = '10px' }: Props) => {
+  return (
+    <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 6L17.1991 18.0129C17.129 19.065 17.0939 19.5911 16.8667 19.99C16.6666 20.3412 16.3648 20.6235 16.0011 20.7998C15.588 21 15.0607 21 14.0062 21H9.99377C8.93927 21 8.41202 21 7.99889 20.7998C7.63517 20.6235 7.33339 20.3412 7.13332 19.99C6.90607 19.5911 6.871 19.065 6.80086 18.0129L6 6M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M14 10V17M10 10V17" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}></path> </g></svg>
   )
 }
 
@@ -28,7 +48,7 @@ export const ShoppingCartIcon = ({ className = '' }: Props) => {
 
 export const StartIcon = ({ className = '' }: Props) => {
   return (
-    <svg enableBackground="new 0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={className}><path d="m21.95117 9.67041c-.11768-.36194-.43052-.62576-.80713-.68066l-5.69873-.82813-2.54831-5.16357c-.17718-.32748-.52492-.52597-.897-.512v16.27909l5.09717 2.67968c.48896.257 1.09369.06895 1.35069-.42001.10228-.19461.1376-.41749.10048-.63419l-.97363-5.67578 4.12353-4.019c.27253-.26585.37057-.66334.25293-1.02543z"/><path d="m11.10303 2.99805-2.54834 5.16363-5.69873.82819c-.21747.03168-.41846.13409-.5719.29138-.38574.39551-.37781 1.02887.0177 1.41461l4.12354 4.01898-.97363 5.67578c-.03711.21667-.00177.43958.10046.63416.25702.48901.86176.67706 1.35071.42004l5.09716-2.67968v-16.26172c-.35559.00079-.70306.16626-.89697.49463z"/></svg>
+    <svg enableBackground="new 0 0 24 24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={className}><path d="m21.95117 9.67041c-.11768-.36194-.43052-.62576-.80713-.68066l-5.69873-.82813-2.54831-5.16357c-.17718-.32748-.52492-.52597-.897-.512v16.27909l5.09717 2.67968c.48896.257 1.09369.06895 1.35069-.42001.10228-.19461.1376-.41749.10048-.63419l-.97363-5.67578 4.12353-4.019c.27253-.26585.37057-.66334.25293-1.02543z" /><path d="m11.10303 2.99805-2.54834 5.16363-5.69873.82819c-.21747.03168-.41846.13409-.5719.29138-.38574.39551-.37781 1.02887.0177 1.41461l4.12354 4.01898-.97363 5.67578c-.03711.21667-.00177.43958.10046.63416.25702.48901.86176.67706 1.35071.42004l5.09716-2.67968v-16.26172c-.35559.00079-.70306.16626-.89697.49463z" /></svg>
   )
 }
 

@@ -1,7 +1,7 @@
 'use client'
 
-import { type TypeCartOptions, type TypeStateReducerCart, type TypeProduct } from '@/types'
-import { useEffect, useReducer } from 'react'
+import { type TypeCartOptions, type TypeStateReducerCart, type TypeProduct, type TypeProductsCart } from '@/types'
+import { useEffect, useReducer, useState } from 'react'
 import { reducerCart } from '../reducer/reducerCart'
 import { useAuthContext } from './useAuthContext'
 import { isEqual } from 'lodash'
@@ -26,6 +26,7 @@ const initialState: TypeStateReducerCart = {
 export const useCart = (): TypeCartOptions => {
   const { user } = useAuthContext()
   const [state, dispatch] = useReducer(reducerCart, initialState)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (user == null) return
@@ -40,22 +41,29 @@ export const useCart = (): TypeCartOptions => {
 
   useEffect(() => {
     if (user == null || (Boolean(isEqual(state.cart, state.cartPrev)))) return
-    console.log()
-    void saveData()
+    saveData()
   }, [state.cart])
 
-  const saveData = async () => {
-    ProcessToast({ text: 'Adding product...' })
-    await fetch('/api/carts', {
+  const saveData = () => {
+    ProcessToast({ text: 'Loading...' })
+    fetch('/api/carts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(state.cart)
     })
-    SuccessToast({ text: 'Product added!' })
+      .then(async res => await res.json())
+      .then(data => {
+        dispatch({ type: 'FETCH_SUCCESS', payload: data.cart })
+        SuccessToast({ text: 'Action complete!' })
+      })
+      .catch(() => {
+        dispatch({ type: 'SET_ERROR', payload: 'Error while saving the cart' })
+      })
   }
 
   const getData = async () => {
     try {
+      setLoading(true)
       const res = await fetch(`/api/carts/${user.uid}`)
       let data = await res.json()
       if (data.products == null) {
@@ -68,7 +76,9 @@ export const useCart = (): TypeCartOptions => {
       }
       dispatch({ type: 'FETCH_SUCCESS', payload: data })
     } catch (error) {
-      dispatch({ type: 'FETCH_ERROR' })
+      dispatch({ type: 'SET_ERROR', payload: 'Unable to retrieve the cart' })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -80,28 +90,30 @@ export const useCart = (): TypeCartOptions => {
     dispatch({ type: 'ADD_PRODUCT', payload: product })
   }
 
-  const deleteProduct = (idProduct: string) => {
+  const deleteProduct = (product: TypeProductsCart) => {
     if (user == null) {
       AlertToast({ text: 'You need to log in' })
       return
     }
-    dispatch({ type: 'DELETE_PRODUCT', payload: idProduct })
+    dispatch({ type: 'DELETE_PRODUCT', payload: product })
   }
 
-  const sumProduct = (product: TypeProduct) => {
+  const sumProduct = (product: TypeProductsCart) => {
     if (user == null) {
       AlertToast({ text: 'You need to log in' })
       return
     }
-    dispatch({ type: 'SUM_QUANTITY', payload: product })
+    const newProduct = { ...product, quantity: product.quantity + 1 }
+    dispatch({ type: 'SUM_QUANTITY', payload: newProduct })
   }
 
-  const resProduct = (product: TypeProduct) => {
+  const resProduct = (product: TypeProductsCart) => {
     if (user == null) {
       AlertToast({ text: 'You need to log in' })
       return
     }
-    dispatch({ type: 'RES_QUANTITY', payload: product })
+    const newProduct = { ...product, quantity: product.quantity - 1 }
+    dispatch({ type: 'RES_QUANTITY', payload: newProduct })
   }
 
   return {
@@ -109,6 +121,7 @@ export const useCart = (): TypeCartOptions => {
     addProduct,
     state,
     sumProduct,
-    resProduct
+    resProduct,
+    loading
   }
 }

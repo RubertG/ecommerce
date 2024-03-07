@@ -10,7 +10,11 @@ const layout = ({ children }: Props) => {
     <>
       <Nav />
       <SkeletonTheme baseColor="#c2c2c2" highlightColor="#9b9b9b">
-        {children}
+        {/* <main
+          className='min-h-screen'
+        > */}
+          {children}
+        {/* </main> */}
       </SkeletonTheme>
     </>
   )

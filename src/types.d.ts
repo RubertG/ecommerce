@@ -47,10 +47,11 @@ export interface TypeAuthOptions {
 
 export interface TypeCartOptions {
   addProduct: (product: TypeProduct) => void
-  deleteProduct: (product: TypeIdCart) => void
+  deleteProduct: (product: TypeProductsCart) => void
   state: TypeStateReducerCart
-  sumProduct: (product: TypeProduct) => void
-  resProduct: (product: TypeProduct) => void
+  sumProduct: (product: TypeProductsCart) => void
+  resProduct: (product: TypeProductsCart) => void
+  loading: boolean
 }
 
 export interface TypeSearchParams {
@@ -80,11 +81,11 @@ export interface TypeStateReducerCart {
 
 export type TypeActionReducerCart =
   { type: 'ADD_PRODUCT', payload: TypeProduct }
-  | { type: 'DELETE_PRODUCT', payload: TypeIdProduct }
+  | { type: 'DELETE_PRODUCT', payload: TypeProductsCart }
   | { type: 'FETCH_SUCCESS', payload: TypeCartWithId }
-  | { type: 'FETCH_ERROR' }
+  | { type: 'SET_ERROR', payload: string }
   | { type: 'RESET_ERROR' }
-  | { type: 'SUM_QUANTITY', payload: TypeProduct }
-  | { type: 'RES_QUANTITY', payload: TypeProduct }
+  | { type: 'SUM_QUANTITY', payload: TypeProductsCart }
+  | { type: 'RES_QUANTITY', payload: TypeProductsCart }
 
 export type TypeCategories = typeof CATEGORIES[keyof typeof CATEGORIES]

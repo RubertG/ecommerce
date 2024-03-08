@@ -17,13 +17,15 @@ const ProductsPage: FC<Props> = ({ searchParams }) => {
       >
         <Searcher searchParams={searchParams} />
         <section
-          className='flex items-center justify-center gap-2 flex-wrap'
+          className='flex items-center justify-center gap-2 flex-wrap animate-enter'
         >
         <FilterByPrice searchParams={searchParams} />
         <FilterByRate searchParams={searchParams} />
         </section>
       </header>
-      <main>
+      <main
+        className='animate-enter'
+      >
         <ContainerProducts searchParams={searchParams} />
       </main>
     </>

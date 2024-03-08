@@ -9,13 +9,9 @@ import { SuccessToast } from './toasts'
 export const CartProducts = () => {
   const { deleteProduct, resProduct, state, sumProduct, loading } = useCartContext()
 
-  if (state.cart == null) {
-    return <h1>Sin productos...</h1>
-  }
-
   return (
     <main
-      className='grid gap-6 lg:gap-2 xl:gap-6 px-3 my-10 lg:max-w-5xl m-auto xl:px-0 lg:grid-cols-[65%,35%] items-start max-w-2xl'
+      className='grid gap-6 lg:gap-2 xl:gap-6 px-3 my-10 lg:max-w-5xl m-auto xl:px-0 lg:grid-cols-[65%,35%] items-start max-w-2xl animate-enter'
     >
       <section
         className='bg-white-custom border-2 border-gray-custom shadow-gray-custom overflow-hidden rounded-lg'

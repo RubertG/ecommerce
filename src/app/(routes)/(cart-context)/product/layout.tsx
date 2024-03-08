@@ -17,7 +17,9 @@ const ProductLayout = ({ children }: Props) => {
       </header>
       <Suspense
         fallback={
-          <>
+          <div
+          className='animate-enter'
+          >
             <ProductDetailsSkeleton />
             <section
               className='flex flex-wrap gap-2 md:gap-3 px-3 xl:px-0 my-10 justify-center items-center max-w-5xl m-auto'
@@ -28,7 +30,7 @@ const ProductLayout = ({ children }: Props) => {
                 ))
               }
             </section>
-          </>
+          </div>
         }
       >
         {children}

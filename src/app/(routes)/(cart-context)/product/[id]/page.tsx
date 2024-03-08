@@ -19,10 +19,12 @@ const ProductPage: FC<Props> = async ({ params: { id } }) => {
   const product = await getData(id)
 
   return (
-    <>
+    <main
+      className='animate-enter'
+    >
       <ProductDetails {...product} />
       <MoreProducts category={product.category.name} id={id} />
-    </>
+    </main>
   )
 }
 

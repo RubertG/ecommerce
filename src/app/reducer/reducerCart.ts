@@ -75,7 +75,7 @@ export const reducerCart = (
       cart: {
         ...state.cart,
         products: newCart,
-        total: state.cart.total - action.payload.price * action.payload.quantity
+        total
       },
       cartPrev: state.cart
     }

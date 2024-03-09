@@ -53,7 +53,6 @@ export const useCart = (): TypeCartOptions => {
     })
       .then(async res => await res.json())
       .then(data => {
-        dispatch({ type: 'FETCH_SUCCESS', payload: data.cart })
         SuccessToast({ text: 'Action complete!' })
       })
       .catch(() => {

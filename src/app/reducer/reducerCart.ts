@@ -6,6 +6,7 @@ export const reducerCart = (
   action: TypeActionReducerCart
 ): TypeStateReducerCart => {
   if (action.type === 'SET_ERROR') {
+    console.log(isEqual(state.cartPrev, state.cart))
     return {
       ...state,
       cart: state.cartPrev,
@@ -40,7 +41,8 @@ export const reducerCart = (
           ...state.cart,
           products: newProducts,
           total: state.cart.total + action.payload.price
-        }
+        },
+        cartPrev: state.cart
       }
     }
 
@@ -65,13 +67,17 @@ export const reducerCart = (
       }
     }
 
+    let total = state.cart.total - action.payload.price
+    if (total < 0) total = 0
+
     return {
       ...state,
       cart: {
         ...state.cart,
         products: newCart,
-        total: state.cart.total - action.payload.price * action.payload.quantity
-      }
+        total
+      },
+      cartPrev: state.cart
     }
   }
 
@@ -83,7 +89,7 @@ export const reducerCart = (
         error: 'Product not found'
       }
     }
-    const newCart = [...state.cart.products]
+    const newCart = structuredClone([...state.cart.products])
     newCart[index].quantity = action.payload.quantity
     return {
       ...state,
@@ -91,33 +97,33 @@ export const reducerCart = (
         ...state.cart,
         products: newCart,
         total: state.cart.total + action.payload.price
-      }
+      },
+      cartPrev: structuredClone(state.cart)
     }
   }
 
   if (action.type === 'RES_QUANTITY') {
-    const newCart = state.cart.products.filter(product => {
+    const newCart = structuredClone(state.cart).products.filter((product, i) => {
       if (product.id === action.payload.id) {
+        if (action.payload.quantity <= 0) {
+          return false
+        }
         product.quantity = action.payload.quantity
       }
-      if (product.quantity > 0) {
-        return true
-      }
-      return false
+      return true
     })
-    if (newCart === state.cart.products) {
-      return {
-        ...state,
-        error: 'Product not found'
-      }
-    }
+
+    let total = state.cart.total - action.payload.price
+    if (total < 0) total = 0
+
     return {
       ...state,
       cart: {
         ...state.cart,
         products: newCart,
-        total: state.cart.total - action.payload.price
-      }
+        total
+      },
+      cartPrev: structuredClone(state.cart)
     }
   }
 

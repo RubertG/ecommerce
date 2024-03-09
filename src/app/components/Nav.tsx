@@ -47,6 +47,7 @@ function Nav ({ dark = false }: Props) {
           >
             <button
               onClick={handleClickCart}
+              title='Cart'
             >
               <ShoppingCartIcon className={`${dark ? 'fill-Lochmara-50' : 'fill-placeholder-gray'} block fill-Lochmara-100 w-full hover:fill-green-500 transition`} />
             </button>

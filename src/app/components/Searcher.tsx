@@ -63,6 +63,7 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
             ...((text !== '') && { search: text }),
             ...((searchParams?.category != null) && { category: searchParams?.category })
           }).toString()}`}
+          title='Search'
         >
           <MagnifyingGlassIcon className='fill-Lochmara-500 w-8 hover:fill-Lochmara-700 transition' />
         </Link>

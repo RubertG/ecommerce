@@ -67,7 +67,7 @@ export const reducerCart = (
       }
     }
 
-    let total = state.cart.total - action.payload.price
+    let total = state.cart.total - action.payload.price * action.payload.quantity
     if (total < 0) total = 0
 
     return {
@@ -75,7 +75,7 @@ export const reducerCart = (
       cart: {
         ...state.cart,
         products: newCart,
-        total
+        total: state.cart.total - action.payload.price * action.payload.quantity
       },
       cartPrev: state.cart
     }

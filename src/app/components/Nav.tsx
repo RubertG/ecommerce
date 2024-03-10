@@ -42,20 +42,20 @@ function Nav ({ dark = false }: Props) {
         <ul
           className='flex gap-2 sm:gap-4 items-center justify-center flex-wrap'
         >
-          <li
-            className='w-6 h-6 sm:w-7 sm:h-7'
-          >
-            <button
-              onClick={handleClickCart}
-              title='Cart'
-            >
-              <ShoppingCartIcon className={`${dark ? 'fill-Lochmara-50' : 'fill-placeholder-gray'} block fill-Lochmara-100 w-full hover:fill-green-500 transition`} />
-            </button>
-          </li>
           {
             user != null
               ? (
                 <>
+                  <li
+                    className='w-6 h-6 sm:w-7 sm:h-7'
+                  >
+                    <button
+                      onClick={handleClickCart}
+                      title='Cart'
+                    >
+                      <ShoppingCartIcon className={`${dark ? 'fill-Lochmara-50' : 'fill-placeholder-gray'} block fill-Lochmara-100 w-full hover:fill-green-500 transition`} />
+                    </button>
+                  </li>
                   <li
                     className='sm:mx-2 w-7 h-7 sm:w-8 sm:h-8 text-sm sm:text-base bg-green-950 grid place-content-center rounded-full text-white-custom select-none'
                   >
@@ -76,7 +76,7 @@ function Nav ({ dark = false }: Props) {
                 <>
                   <li>
                     <button
-                      className='sm:ml-2 py-[0.125rem] px-4 bg-gradient-blue-light text-sm sm:text-base font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
+                      className='py-[0.125rem] px-4 bg-gradient-blue-light text-sm sm:text-base font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
                       onClick={() => { void signIn() }}
                     >
                       Sign in

@@ -17,6 +17,6 @@ This project has Firebase's database and authentication. The API and frontend ar
   - ```/[name]``` -> **GET**: Get the category by name
 
 - ```/carts``` -> **GET**: Get all the carts.
-                  **POST**: Save cart          
+                  **POST**: Save cart (Private)        
 
   - ```/[id]``` -> **GET**: Get the cart by id

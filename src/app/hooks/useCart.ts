@@ -48,7 +48,10 @@ export const useCart = (): TypeCartOptions => {
     ProcessToast({ text: 'Loading...' })
     fetch('/api/carts', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'api-key': `beret-${process.env.NEXT_PUBLIC_API_KEY}`
+      },
       body: JSON.stringify(state.cart)
     })
       .then(async res => await res.json())

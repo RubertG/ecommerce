@@ -1,4 +1,6 @@
+import { ProductDetailsSkeleton } from '@/app/components/ProductDetailsSkeleton'
 import Searcher from '@/app/components/Searcher'
+import { Suspense } from 'react'
 
 interface Props {
   children: React.ReactNode
@@ -12,7 +14,13 @@ const ProductLayout = ({ children }: Props) => {
       >
         <Searcher />
       </header>
-      {children}
+      <Suspense
+        fallback={
+          <ProductDetailsSkeleton />
+        }
+      >
+        {children}
+      </Suspense>
     </>
   )
 }

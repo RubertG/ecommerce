@@ -1,7 +1,6 @@
 import CardProductSkeleton from '@/app/components/CardProductSkeleton'
 import { MoreProducts } from '@/app/components/MoreProducts'
 import { ProductDetails } from '@/app/components/ProductDetails'
-import { ProductDetailsSkeleton } from '@/app/components/ProductDetailsSkeleton'
 import { type TypeProduct } from '@/types'
 import { Suspense, type FC } from 'react'
 
@@ -24,13 +23,7 @@ const ProductPage: FC<Props> = async ({ params: { id } }) => {
     <main
       className='animate-enter'
     >
-      <Suspense
-        fallback={
-          <ProductDetailsSkeleton />
-        }
-      >
-        <ProductDetails {...product} />
-      </Suspense>
+      <ProductDetails {...product} />
       <Suspense
         fallback={
           <section

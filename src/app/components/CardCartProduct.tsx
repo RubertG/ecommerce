@@ -35,8 +35,8 @@ export const CardCartProduct: FC<Props> = ({ deleteProduct, product, resProduct,
         >
           <button
             className='py-[0.12rem] px-3 bg-gradient-blue text-sm sm:text-base rounded-lg border-Lochmara-600 text-Lochmara-50 border hover:shadow-blue-custom transition-shadow'
-            onClick={() => { SuccessToast({ text: 'Comming soon!' }) }}
-          >Buy</button>
+            onClick={() => { SuccessToast({ text: 'Proximamente!' }) }}
+          >Comprar</button>
           <span
             className={`${quicksand.className} border text-sm sm:text-base border-malachite-300 bg-gradient-green rounded-lg py-[0.12rem] px-2 font-medium text-malachite-950`}
           >

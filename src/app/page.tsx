@@ -28,11 +28,11 @@ async function Page () {
         >
           <h2
             className={`${quicksand.className} text-2xl font-bold text-dodger-blue-800 text-center mb-3`}
-          >About us</h2>
+          >Sobre nosotros</h2>
           <p
             className='text-gray-800 leading-tight pb-1'
           >
-            Luco's Store has been crafted with a passion for the extraordinary. We are a company with 10 years of experience, dedicated to serving each customer in the best possible way. However, it's essential to clarify that we are a FAKE company
+            <strong>Luco's store</strong> ha sido creada con pasión por lo extraordinario. Somos una empresa con 10 años de experiencia, dedicada a servir a cada cliente de la mejor manera posible. Sin embargo, es esencial aclarar que somos una empresa <strong>FALSA</strong>.
           </p>
         </article>
         <article
@@ -40,11 +40,11 @@ async function Page () {
         >
           <h2
             className={`${quicksand.className} text-2xl font-bold text-dodger-blue-800 text-center mb-3`}
-          >Our products</h2>
+          >Nuestros productos</h2>
           <p
             className='text-gray-800 leading-tight pb-1'
           >
-            Embark on a shopping odyssey at Rugo's Store, where cutting-edge electronics, exquisite jewelry, and fashionable men's and women's clothing redefine your style with sophistication and flair.
+            Embárcate en una odisea de compras en <strong>Luco's store</strong>, donde la electrónica de vanguardia, las joyas exquisitas y la moda para hombres y mujeres redefinen tu estilo con sofisticación y elegancia.
           </p>
         </article>
         <article
@@ -52,11 +52,11 @@ async function Page () {
         >
           <h2
             className={`${quicksand.className} text-2xl font-bold text-dodger-blue-800 text-center mb-3`}
-          >Policies</h2>
+          >Políticas</h2>
           <p
             className='text-gray-800 leading-tight pb-1'
           >
-            <strong>Transparency, quality, and satisfaction:</strong> Our policies ensure your reliable and exceptional experience.
+            <strong>Transparencia, calidad y satisfacción:</strong> Nuestras políticas garantizan una experiencia confiable y excepcional para ti.
           </p>
         </article>
         <article
@@ -64,11 +64,11 @@ async function Page () {
         >
           <h2
             className={`${quicksand.className} text-2xl font-bold text-bright-red-800 text-center mb-3`}
-          >Important</h2>
+          >Importante</h2>
           <p
             className='text-gray-800 leading-tight pb-1'
           >
-            This store is <strong>COMPLETELY FAKE</strong>, created for learning purposes.
+            <strong>Luco's store</strong> es una tienda <strong>COMPLETAMENTE FALSA</strong>, creada con propósitos de aprendizaje.
           </p>
         </article>
       </section>

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { type FC } from 'react'
-import { StartIcon } from './Icons'
+import { ShoppingCartIcon, StartIcon } from './Icons'
 import { quicksand } from '../fonts/fonts'
 import { type TypeProduct } from '@/types'
 import { useCartContext } from '../hooks/useCartContext'
@@ -47,16 +47,17 @@ export const ProductDetails: FC<TypeProduct> = ({ image, price, rate, title, des
             className='grid grid-cols-2 w-full gap-1 md:gap-2'
           >
             <button
-              className='py-[0.125rem] px-4 bg-gradient-blue-light text-sm sm:text-base font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
+              className='py-[0.125rem] px-4 bg-gradient-blue-light text-sm sm:text-base font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow flex items-center justify-center gap-1 md:gap-2'
               onClick={() => { addProduct({ id, category, description, image, price, rate, title }) }}
             >
-              Add cart
+              <ShoppingCartIcon className='block fill-Lochmara-600 w-4 md:w-5' />
+              Añadir
             </button>
             <button
               className='py-[0.125rem] px-4 bg-gradient-blue text-sm sm:text-base font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow '
               onClick={() => { SuccessToast({ text: 'Coming soon...' }) }}
             >
-              Buy
+              Comprar
             </button>
           </div>
         </footer>

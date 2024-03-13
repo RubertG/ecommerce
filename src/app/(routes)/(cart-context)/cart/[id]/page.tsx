@@ -7,7 +7,6 @@ const CartPage = () => {
       className='animate-enter'
     >
       <CartProducts />
-      <MoreProducts />
     </main>
   )
 }

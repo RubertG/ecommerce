@@ -56,7 +56,7 @@ export const FilterByRate = ({
       className='flex gap-2'
     >
       <label
-        className='flex items-center justify-center gap-3 px-3 py-1 bg-white-custom rounded-lg shadow-card-custom border-2 border-gray-custom'
+        className='flex items-center justify-center gap-3 px-2 py-1 bg-white-custom rounded-lg shadow-card-custom border-2 border-gray-custom'
       >
         <p
           className='text-text-gray'
@@ -72,7 +72,7 @@ export const FilterByRate = ({
           onChange={(e) => { handleChange(e) }} />
       </label>
       <label
-        className='flex items-center justify-center gap-3 px-3 py-1 bg-white-custom rounded-lg shadow-card-custom border-2 border-gray-custom'
+        className='flex items-center justify-center gap-3 px-2 py-1 bg-white-custom rounded-lg shadow-card-custom border-2 border-gray-custom'
       >
         <p
           className='text-text-gray'
@@ -98,7 +98,7 @@ export const FilterByRate = ({
           ...((category != null) && { category })
         }).toString()}`}
       >
-        Filter by rate
+        Filtrar calificación
       </Link>
     </form>
   )

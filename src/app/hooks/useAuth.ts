@@ -19,9 +19,9 @@ export const useAuth = () => {
   const signOut = async () => {
     try {
       await logout()
-      SuccessToast({ text: 'Closed session!' })
+      SuccessToast({ text: 'Sesión cerrada!' })
     } catch (error) {
-      AlertToast({ text: 'Error closing session!' })
+      AlertToast({ text: 'Error al cerrar sesión!' })
     }
   }
 
@@ -29,11 +29,11 @@ export const useAuth = () => {
     try {
       await signInWithGoogle()
       SuccessToast({
-        text: 'Session started!'
+        text: 'Sesión iniciada!'
       })
     } catch (error) {
       AlertToast({
-        text: 'Failed to login!'
+        text: 'Error al ingresar!'
       })
     }
   }

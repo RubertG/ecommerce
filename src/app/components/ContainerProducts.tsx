@@ -37,9 +37,9 @@ export const ContainerProducts: FC<Props> = ({ searchParams }) => {
         ))
       }
       {
-        products == null
-          ? <p>Error obtaining the products</p>
-          : (products.length === 0) && <p>No products :(</p>
+        (products == null || products.length === 0) && <p
+          className='h-[50vh]'
+        >No hay productos :(</p>
       }
     </section>
   )

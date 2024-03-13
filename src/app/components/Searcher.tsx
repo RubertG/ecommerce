@@ -5,6 +5,7 @@ import { MagnifyingGlassIcon } from './Icons'
 import { type ChangeEvent, useState, type FC, useEffect, useRef } from 'react'
 import { type TypeSearchParams } from '@/types'
 import { CATEGORIES, MAX_PRICE, MAX_RATE, MIN_PRICE, MIN_RATE } from '@/const'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   searchParams?: TypeSearchParams
@@ -13,6 +14,7 @@ interface Props {
 
 const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
   const [text, setText] = useState(searchParams?.search ?? '')
+  const router = useRouter()
   const urlAux = {
     ...((searchParams?.search != null) && {
       search: searchParams?.search
@@ -45,16 +47,23 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
 
   return (
     <search
-      className={`w-full max-w-xl px-3 sm:px-0 ${classNameContainer ?? ''}`}
+      className={`w-full md:w-auto max-w-2xl px-3 md:px-0 ${classNameContainer ?? ''}`}
     >
       <form
         className='flex flex-row justify-between items-center gap-2 px-3 py-2 rounded-2xl border-2 border-gray-custom bg-white-custom shadow-card-custom'
+        onSubmit={(e) => {
+          e.preventDefault()
+          router.push(`/products?${new URLSearchParams({
+            ...((text !== '') && { search: text }),
+            ...((searchParams?.category != null) && { category: searchParams?.category })
+          }).toString()}`)
+        }}
       >
         <input
           type="text"
           ref={inputRef}
           className='w-full focus:outline-none'
-          placeholder="Search products of interest..."
+          placeholder="Buscar productos de interes..."
           defaultValue={searchParams?.search ?? ''}
           onChange={(e) => { handleChange(e) }}
         />
@@ -63,19 +72,19 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
             ...((text !== '') && { search: text }),
             ...((searchParams?.category != null) && { category: searchParams?.category })
           }).toString()}`}
-          title='Search'
+          title='Buscar'
         >
           <MagnifyingGlassIcon className='fill-Lochmara-500 w-8 hover:fill-Lochmara-700 transition' />
         </Link>
       </form>
       <footer
-        className='flex items-center justify-center sm:justify-between gap-2 mt-2 flex-wrap'
+        className='flex items-center justify-center md:justify-between gap-2 mt-2 flex-wrap'
       >
         <Link
           href={'/products'}
           className={`border-2 shadow-card-custom px-3 py-1 rounded-lg text-sm hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition ${searchParams?.category === null ? 'bg-Lochmara-600 text-white-custom border-Lochmara-700' : 'bg-white-custom border-gray-custom text-text-gray'}`}
         >
-          All products
+          Todos los productos
         </Link>
         {
           Object.entries(CATEGORIES).map(([key, value]) => {

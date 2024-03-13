@@ -14,8 +14,8 @@ export const MAX_RATE = 'max-rate'
 export const CATEGORY = 'category'
 
 export const CATEGORIES = {
-  womensClothing: "women's clothing",
-  electronics: 'electronics',
-  caps: 'caps',
-  mensClothing: "men's clothing"
+  caps: 'gorras',
+  electronics: 'electrónica',
+  mensClothing: 'ropa para hombre',
+  womensClothing: 'ropa para mujer'
 } as const

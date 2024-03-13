@@ -21,7 +21,7 @@ function Nav ({ dark = false }: Props) {
       router.push(`/cart/${user.uid}`)
     } else {
       AlertToast({
-        text: 'You must log in!'
+        text: 'Necesitas iniciar sesión!'
       })
     }
   }
@@ -51,13 +51,14 @@ function Nav ({ dark = false }: Props) {
                   >
                     <button
                       onClick={handleClickCart}
-                      title='Cart'
+                      title='Ir al carrito'
                     >
                       <ShoppingCartIcon className={`${dark ? 'fill-Lochmara-50' : 'fill-placeholder-gray'} block fill-Lochmara-100 w-full hover:fill-green-500 transition`} />
                     </button>
                   </li>
                   <li
                     className='sm:mx-2 w-7 h-7 sm:w-8 sm:h-8 text-sm sm:text-base bg-green-950 grid place-content-center rounded-full text-white-custom select-none'
+                    title={user.displayName}
                   >
                     <p>{user.displayName?.[0]}</p>
                   </li>
@@ -66,7 +67,7 @@ function Nav ({ dark = false }: Props) {
                       className='py-[0.125rem] px-4 bg-gradient-red text-sm sm:text-base font-medium rounded-lg border-bright-red-800 text-Lochmara-50 border-2 hover:shadow-red-custom transition-shadow flex justify-center items-center gap-1'
                       onClick={() => { void signOut() }}
                     >
-                      <p className='text-nowrap'>Log out</p>
+                      <p className='text-nowrap'>Salir</p>
                       <ExitIcon className='fill-Lochmara-50 w-5 h-5' />
                     </button>
                   </li>
@@ -79,7 +80,7 @@ function Nav ({ dark = false }: Props) {
                       className='py-[0.125rem] px-4 bg-gradient-blue-light text-sm sm:text-base font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
                       onClick={() => { void signIn() }}
                     >
-                      Sign in
+                      Registrar
                     </button>
                   </li>
                   <li>
@@ -87,7 +88,7 @@ function Nav ({ dark = false }: Props) {
                       className='py-[0.125rem] px-4 bg-gradient-blue text-sm sm:text-base font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow '
                       onClick={() => { void signIn() }}
                     >
-                      Log in
+                      Ingresar
                     </button>
                   </li>
                 </>

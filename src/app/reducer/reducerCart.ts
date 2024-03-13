@@ -48,7 +48,7 @@ export const reducerCart = (
 
     return {
       ...state,
-      error: 'Product already added'
+      error: 'Producto ya añadido'
     }
   }
 
@@ -63,7 +63,7 @@ export const reducerCart = (
     if (isEqual(newCart, state.cart.products)) {
       return {
         ...state,
-        error: 'Product not found'
+        error: 'No se encontró el producto'
       }
     }
 
@@ -86,7 +86,7 @@ export const reducerCart = (
     if (index === -1) {
       return {
         ...state,
-        error: 'Product not found'
+        error: 'No se encontró el producto'
       }
     }
     const newCart = structuredClone([...state.cart.products])

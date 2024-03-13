@@ -1,4 +1,5 @@
 import Skeleton from 'react-loading-skeleton'
+import { ShoppingCartIcon } from './Icons'
 
 export const ProductDetailsSkeleton = () => {
   return (
@@ -38,16 +39,17 @@ export const ProductDetailsSkeleton = () => {
             className='grid grid-cols-2 w-full gap-1 md:gap-2'
           >
             <button
-              className='py-[0.125rem] px-4 bg-gradient-blue-light text-sm sm:text-base font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow'
+              className='py-[0.125rem] px-4 bg-gradient-blue-light text-sm sm:text-base font-medium rounded-lg border-Lochmara-200 border-2 text-Lochmara-600 hover:shadow-gray-custom transition-shadow flex items-center justify-center gap-1 md:gap-2'
               disabled
             >
-              Add cart
+              <ShoppingCartIcon className='block fill-Lochmara-600 w-4 md:w-5' />
+              Añadir
             </button>
             <button
               className='py-[0.125rem] px-4 bg-gradient-blue text-sm sm:text-base font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow '
               disabled
             >
-              Buy
+              Comprar
             </button>
           </div>
         </footer>

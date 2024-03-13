@@ -12,7 +12,7 @@ const ProtectedRoute: FC<Props> = ({ children }) => {
   const { user, loading } = useAuthContext()
   const router = useRouter()
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <p>Cargando...</p>
   if (user == null) {
     router.push('/products')
     return

@@ -13,7 +13,7 @@ const getData = async (
       const data: TypeProduct[] | object = await res.json()
       return parseData(data, id)
     } catch (error) {
-      throw new Error('Error: category not found')
+      throw new Error('Error: no se encontró la categoría')
     }
   }
   const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products`)
@@ -47,7 +47,7 @@ export const MoreProducts: FC<Props> = async ({ limit = 4, category = null, id =
     >
       <h2
         className={`${quicksand.className} max-w-5xl px-3 xl:px-0 text-2xl font-bold m-auto text-Lochmara-950 text-center lg:text-left `}
-      >More products</h2>
+      >Más productos</h2>
       <article
         className='flex flex-wrap gap-2 md:gap-3 px-3 xl:px-0 mt-5 mb-10 justify-center items-center max-w-5xl m-auto'
       >

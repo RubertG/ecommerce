@@ -45,7 +45,7 @@ export const useCart = (): TypeCartOptions => {
   }, [state.cart])
 
   const saveData = () => {
-    ProcessToast({ text: 'Loading...' })
+    ProcessToast({ text: 'Cargando...' })
     fetch('/api/carts', {
       method: 'POST',
       headers: {
@@ -56,10 +56,10 @@ export const useCart = (): TypeCartOptions => {
     })
       .then(async res => await res.json())
       .then(data => {
-        SuccessToast({ text: 'Action complete!' })
+        SuccessToast({ text: 'Acción completada!' })
       })
       .catch(() => {
-        dispatch({ type: 'SET_ERROR', payload: 'Error while saving the cart' })
+        dispatch({ type: 'SET_ERROR', payload: 'Error al guardar en el carrito' })
       })
   }
 
@@ -78,7 +78,7 @@ export const useCart = (): TypeCartOptions => {
       }
       dispatch({ type: 'FETCH_SUCCESS', payload: data })
     } catch (error) {
-      dispatch({ type: 'SET_ERROR', payload: 'Unable to retrieve the cart' })
+      dispatch({ type: 'SET_ERROR', payload: 'No se puede recuperar el carrito' })
     } finally {
       setLoading(false)
     }
@@ -86,7 +86,7 @@ export const useCart = (): TypeCartOptions => {
 
   const addProduct = (product: TypeProduct) => {
     if (user == null) {
-      AlertToast({ text: 'You need to log in' })
+      AlertToast({ text: 'Necesitas iniciar sesión' })
       return
     }
     dispatch({ type: 'ADD_PRODUCT', payload: product })
@@ -94,7 +94,7 @@ export const useCart = (): TypeCartOptions => {
 
   const deleteProduct = (product: TypeProductsCart) => {
     if (user == null) {
-      AlertToast({ text: 'You need to log in' })
+      AlertToast({ text: 'Necesitas iniciar sesión' })
       return
     }
     dispatch({ type: 'DELETE_PRODUCT', payload: product })
@@ -102,7 +102,7 @@ export const useCart = (): TypeCartOptions => {
 
   const sumProduct = (product: TypeProductsCart) => {
     if (user == null) {
-      AlertToast({ text: 'You need to log in' })
+      AlertToast({ text: 'Necesitas iniciar sesión' })
       return
     }
     const newProduct = { ...product, quantity: product.quantity + 1 }
@@ -111,7 +111,7 @@ export const useCart = (): TypeCartOptions => {
 
   const resProduct = (product: TypeProductsCart) => {
     if (user == null) {
-      AlertToast({ text: 'You need to log in' })
+      AlertToast({ text: 'Necesitas iniciar sesión' })
       return
     }
     const newProduct = { ...product, quantity: product.quantity - 1 }

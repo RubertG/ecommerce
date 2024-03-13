@@ -19,10 +19,10 @@ export const CartProducts = () => {
         <h2
           className={`${quicksand.className} text-lg md:text-xl text-dodger-blue-950 font-bold py-4 px-4 flex justify-between items-center`}
         >
-          Cart products
+          Productos del carrito
           <span
             className={`${inter.className} text-sm text-mercury-800 font-semibold`}
-          >{state.cart.products.length} products</span>
+          >{state.cart.products.length} productos</span>
         </h2>
         <ul>
           {
@@ -59,7 +59,7 @@ export const CartProducts = () => {
       >
         <h2
           className={`${quicksand.className} text-lg md:text-xl text-dodger-blue-950 font-bold py-4 px-4 text-center border-b-2 border-gray-custom`}
-        >Purchase Summary</h2>
+        >Resumen de la compra</h2>
         <ul
           className='py-4 px-4'
         >
@@ -108,9 +108,9 @@ export const CartProducts = () => {
             >${state.cart.total.toFixed(2)}</span>
           </li>
           <button
-            onClick={() => { SuccessToast({ text: 'Comming soon!' }) }}
+            onClick={() => { SuccessToast({ text: 'Proximamente!' }) }}
             className='w-full py-2 px-3 bg-gradient-blue rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow'
-          >Make purchase</button>
+          >Realizar compra</button>
         </ul>
       </aside>
     </main>

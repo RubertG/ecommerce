@@ -89,6 +89,8 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
         {
           Object.entries(CATEGORIES).map(([key, value]) => {
             const isActive = searchParams?.category === value
+            let text = (value[0].toLocaleUpperCase() + value.slice(1))
+            if (text.toLocaleLowerCase() === CATEGORIES.electronics) text = 'Electrónica'
 
             return (
               <Link
@@ -99,7 +101,7 @@ const Searcher: FC<Props> = ({ searchParams, classNameContainer }) => {
                 }).toString()}`}
                 className={`border-2 shadow-card-custom px-3 py-1 rounded-lg text-sm hover:bg-Lochmara-600 hover:text-white-custom hover:border-Lochmara-700 transition ${isActive ? 'bg-Lochmara-600 text-white-custom border-Lochmara-700' : 'bg-white-custom border-gray-custom text-text-gray'}`}
               >
-                {value[0].toLocaleUpperCase() + value.slice(1)}
+                {text}
               </Link>
             )
           })

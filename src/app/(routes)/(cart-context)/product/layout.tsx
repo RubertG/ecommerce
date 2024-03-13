@@ -1,7 +1,4 @@
-import CardProductSkeleton from '@/app/components/CardProductSkeleton'
-import { ProductDetailsSkeleton } from '@/app/components/ProductDetailsSkeleton'
 import Searcher from '@/app/components/Searcher'
-import { Suspense } from 'react'
 
 interface Props {
   children: React.ReactNode
@@ -15,26 +12,7 @@ const ProductLayout = ({ children }: Props) => {
       >
         <Searcher />
       </header>
-      <Suspense
-        fallback={
-          <div
-          className='animate-enter'
-          >
-            <ProductDetailsSkeleton />
-            <section
-              className='flex flex-wrap gap-2 md:gap-3 px-3 xl:px-0 my-10 justify-center items-center max-w-5xl m-auto'
-            >
-              {
-                Array.from({ length: 4 }).map((_, index) => (
-                  <CardProductSkeleton key={index} />
-                ))
-              }
-            </section>
-          </div>
-        }
-      >
-        {children}
-      </Suspense>
+      {children}
     </>
   )
 }

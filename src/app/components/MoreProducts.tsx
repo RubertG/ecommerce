@@ -16,7 +16,9 @@ const getData = async (
       throw new Error('Error: no se encontró la categoría')
     }
   }
-  const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products`, {
+    cache: 'no-cache'
+  })
   const data: TypeProduct[] | object = await res.json()
   const ids = p?.map(product => product.id)
   return parseData(data, id, ids)

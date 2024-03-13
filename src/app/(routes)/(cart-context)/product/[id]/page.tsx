@@ -1,7 +1,9 @@
+import CardProductSkeleton from '@/app/components/CardProductSkeleton'
 import { MoreProducts } from '@/app/components/MoreProducts'
 import { ProductDetails } from '@/app/components/ProductDetails'
+import { ProductDetailsSkeleton } from '@/app/components/ProductDetailsSkeleton'
 import { type TypeProduct } from '@/types'
-import { type FC } from 'react'
+import { Suspense, type FC } from 'react'
 
 const getData = async (id: string) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products/${id}`)
@@ -22,8 +24,28 @@ const ProductPage: FC<Props> = async ({ params: { id } }) => {
     <main
       className='animate-enter'
     >
-      <ProductDetails {...product} />
-      <MoreProducts category={product.category.name} id={id} />
+      <Suspense
+        fallback={
+          <ProductDetailsSkeleton />
+        }
+      >
+        <ProductDetails {...product} />
+      </Suspense>
+      <Suspense
+        fallback={
+          <section
+            className='flex flex-wrap gap-2 md:gap-3 px-3 xl:px-0 my-10 justify-center items-center max-w-5xl m-auto'
+          >
+            {
+              Array.from({ length: 4 }).map((_, index) => (
+                <CardProductSkeleton key={index} />
+              ))
+            }
+          </section>
+        }
+      >
+        <MoreProducts category={product.category.name} id={id} />
+      </Suspense>
     </main>
   )
 }

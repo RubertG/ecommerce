@@ -15,7 +15,7 @@ export const CATEGORY = 'category'
 
 export const CATEGORIES = {
   caps: 'gorras',
-  electronics: 'electrónica',
+  electronics: 'electrodomesticos',
   mensClothing: 'ropa para hombre',
   womensClothing: 'ropa para mujer'
 } as const

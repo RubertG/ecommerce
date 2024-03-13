@@ -1,4 +1,5 @@
 import { CartProducts } from '@/app/components/CartProducts'
+import { MoreProducts } from '@/app/components/MoreProducts'
 
 const CartPage = () => {
   return (
@@ -6,6 +7,7 @@ const CartPage = () => {
       className='animate-enter'
     >
       <CartProducts />
+      <MoreProducts />
     </main>
   )
 }

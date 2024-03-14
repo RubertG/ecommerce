@@ -31,7 +31,7 @@ export const useProductsReducer = ({
 
   const getProducts = async () => {
     setLoading(true)
-    const data = await fetch('api/products')
+    const data = await fetch('api/products', { next: { revalidate: 0 } })
     const products = await data.json() as TypeProduct[]
     dispatch({ type: 'SET', payload: { products, searchParams } })
     setLoading(false)

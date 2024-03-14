@@ -25,11 +25,11 @@ export const FilterByPrice = ({
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
-    if (formRef.current != null) {
+    if (formRef.current != null && category == null) {
       formRef.current.reset()
     }
     setPriceRange([null, null])
-  }, [search])
+  }, [search, category])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === MIN_PRICE) {

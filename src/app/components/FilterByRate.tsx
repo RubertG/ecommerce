@@ -23,11 +23,11 @@ export const FilterByRate = ({
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
-    if (formRef.current != null) {
+    if (formRef.current != null && category == null) {
       formRef.current.reset()
     }
     setRateRange([null, null])
-  }, [search])
+  }, [search, category])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === MIN_RATE) {

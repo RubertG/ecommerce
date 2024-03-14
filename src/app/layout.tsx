@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: 'Tienda fake desarrollada por Rubert Gonzalez.'
 }
 
+export const dynamic = 'force-dynamic'
+
 export default function RootLayout ({
   children
 }: Readonly<{

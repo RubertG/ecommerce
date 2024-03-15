@@ -1,5 +1,6 @@
 import { addCart, getCarts } from '@/app/firebase/cart-actions'
 import { validateObject } from '@/app/utils/validate-type'
+import { verifyChangeProductsCart } from '@/app/utils/verify-change-products-cart'
 import { EXPECTED_CART_SHAPE } from '@/const'
 import { type TypeCartWithId } from '@/types'
 import { NextResponse } from 'next/server'
@@ -24,7 +25,12 @@ export async function POST (request: Request) {
     if (!verify) throw new Error('Invalid data')
 
     const { id, ...cart } = res
-    await addCart(res.id, cart)
+    const newProductsCart = await verifyChangeProductsCart(cart.products)
+    cart.total = 0
+    for (const product of newProductsCart) {
+      cart.total += product.price * product.quantity
+    }
+    await addCart(res.id, { ...cart, products: newProductsCart })
     return Response.json({ cart: res, status: 200 })
   } catch (error: any) {
     return Response.json({

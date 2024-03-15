@@ -9,7 +9,9 @@ const getData = async (
   p: TypeProductsCart[] | null) => {
   if (category != null) {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products/category/${category}`)
+      const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products/category/${category}`, {
+        cache: 'no-cache'
+      })
       const data: TypeProduct[] | object = await res.json()
       return parseData(data, id)
     } catch (error) {

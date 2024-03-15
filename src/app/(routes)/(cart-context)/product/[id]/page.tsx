@@ -5,7 +5,9 @@ import { type TypeProduct } from '@/types'
 import { Suspense, type FC } from 'react'
 
 const getData = async (id: string) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products/${id}`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products/${id}`, {
+    cache: 'no-cache'
+  })
   const data = await res.json()
   return data as TypeProduct
 }

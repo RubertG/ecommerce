@@ -7,10 +7,8 @@ import { Footer } from './components/Footer'
 
 export const metadata: Metadata = {
   title: "Luco's store",
-  description: 'Tienda fake desarrollada por Rubert Gonzalez.'
+  description: 'Tienda fake desarrollada por Rubert Gonzalez'
 }
-
-export const dynamic = 'force-dynamic'
 
 export default function RootLayout ({
   children

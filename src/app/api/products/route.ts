@@ -1,6 +1,8 @@
 import { getProducts } from '@/app/firebase/products-actions'
 import { NextResponse } from 'next/server'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET () {
   try {
     const products = await getProducts()

@@ -7,6 +7,8 @@ interface Context {
   }
 }
 
+export const dynamic = 'force-dynamic'
+
 export async function GET (req: Request, context: Context) {
   try {
     let { name } = context.params

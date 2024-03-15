@@ -10,7 +10,7 @@ const getData = async (
   if (category != null) {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products/category/${category}`, {
-        next: { revalidate: 0 }
+        cache: 'no-store'
       })
       const data: TypeProduct[] | object = await res.json()
       return parseData(data, id)
@@ -19,7 +19,7 @@ const getData = async (
     }
   }
   const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_URL_FETCHS}/products`, {
-    next: { revalidate: 0 }
+    cache: 'no-store'
   })
   const data: TypeProduct[] | object = await res.json()
   const ids = p?.map(product => product.id)

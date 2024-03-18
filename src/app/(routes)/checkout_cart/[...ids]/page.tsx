@@ -37,7 +37,7 @@ const CheckoutPage: FC<Props> = async ({ params: { ids } }) => {
 
   return (
     <main
-      className='min-h-[70vh] grid gap-6 lg:gap-2 xl:gap-6 px-3 my-10 lg:max-w-5xl m-auto xl:px-0 lg:grid-cols-[60%,40%] items-start max-w-2xl animate-enter mt-20 mb-10'
+      className='min-h-[70vh] grid gap-2 xl:gap-6 px-3 my-10 lg:max-w-5xl m-auto xl:px-0 lg:grid-cols-[60%,40%] items-start max-w-2xl animate-enter mt-20 mb-10'
     >
       <section
         className='bg-white-custom border-2 border-gray-custom shadow-gray-custom overflow-hidden rounded-lg'

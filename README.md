@@ -21,13 +21,16 @@ This project has Firebase's database and authentication. The API and frontend ar
 
   - ```/[id]``` -> **GET**: Get the cart by id
 
-### TODO
-#### Actualizar API
-[x] Que todos los productos sean en español
-[x] Pasar la página al español
+5120 6944 7061 6271 número
+123 codigo de seguridad 
+11/25 fecha
 
-#### Metodo de pago por mercado pago Checkout pro
-[] Hacer el paso a paso del client-side: Hacer pagina que pida datos personales y lugar donde vive. 
-[] Agregar botón de pago con mercado pago a la página anterior
-[] Hacer el paso a paso del server-side (Api): Que devuelva todo lo referente al pago  
-[] Cuando la compra sea aceptada mandar a `/purchase?type=${el tipo de la compra}` y que muestre el tipo de compra con su mensaje correspondiente
+comprador
+TESTUSER173508436
+RfmuR4yUZJ
+
+vendedor
+TESTUSER2017236796
+BNdbYwYNSI
+NEXT_PUBLIC_ACCESS_TOKEN="APP_USR-8353548312242442-031818-67ac2143978eb21ddbe4ca0ef1d5b7a8-1734415038"
+NEXT_PUBLIC_PUBLIC_KEY="APP_USR-cf3b96c2-f5a0-43ff-a3fa-66f87fd2958e"

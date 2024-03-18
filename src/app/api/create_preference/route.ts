@@ -27,9 +27,9 @@ export async function POST (request: NextRequest) {
       body: {
         items,
         back_urls: {
-          success: 'http://localhost:3000/',
-          failure: 'http://localhost:3000/products',
-          pending: 'http://localhost:3000/products?search=a'
+          success: 'https://fake-ecommerce-eta.vercel.app/',
+          failure: 'https://fake-ecommerce-eta.vercel.app/products',
+          pending: 'https://fake-ecommerce-eta.vercel.app/products?search=a'
         },
         auto_return: 'approved'
       }

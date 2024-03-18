@@ -12,7 +12,9 @@ interface Props {
 export const PaymentMethods: FC<Props> = ({ cart }) => {
   const [preference, setPreference] = useState<string>()
   const [error, setError] = useState('')
-  initMercadoPago(String(process.env.NEXT_PUBLIC_PUBLIC_KEY))
+  initMercadoPago(String(process.env.NEXT_PUBLIC_PUBLIC_KEY), {
+    locale: 'es-CO'
+  })
 
   useEffect(() => {
     void createPreference()

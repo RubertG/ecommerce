@@ -89,3 +89,9 @@ export type TypeActionReducerCart =
   | { type: 'RES_QUANTITY', payload: TypeProductsCart }
 
 export type TypeCategories = typeof CATEGORIES[keyof typeof CATEGORIES]
+
+export interface TypePreferenceItem {
+  title: string
+  quantity: number
+  unit_price: number
+}

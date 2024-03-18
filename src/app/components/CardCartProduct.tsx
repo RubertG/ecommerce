@@ -1,19 +1,20 @@
 'use client'
 
-import { type TypeProductsCart } from '@/types'
+import { type TypeIdCart, type TypeProductsCart } from '@/types'
 import { type FC } from 'react'
 import { MinusIcon, PlusIcon, TrashIcon } from './Icons'
-import { SuccessToast } from './toasts'
 import { quicksand } from '../fonts/fonts'
+import Link from 'next/link'
 
 interface Props {
   sumProduct: (product: TypeProductsCart) => void
   resProduct: (product: TypeProductsCart) => void
   deleteProduct: (product: TypeProductsCart) => void
   product: TypeProductsCart
+  idCart: TypeIdCart
 }
 
-export const CardCartProduct: FC<Props> = ({ deleteProduct, product, resProduct, sumProduct }) => {
+export const CardCartProduct: FC<Props> = ({ deleteProduct, product, resProduct, sumProduct, idCart }) => {
   return (
     <li
       className='bg-white-custom p-3 border-t-2 border-t-gray-custom grid grid-cols-[15%,65%,20%]'
@@ -33,10 +34,10 @@ export const CardCartProduct: FC<Props> = ({ deleteProduct, product, resProduct,
         <div
           className='flex items-center gap-2'
         >
-          <button
+          <Link
+          href={`/checkout_cart/${idCart.split('cart-')[1]}/${product.id}`}
             className='py-[0.12rem] px-3 bg-gradient-blue text-sm sm:text-base rounded-lg border-Lochmara-600 text-Lochmara-50 border hover:shadow-blue-custom transition-shadow'
-            onClick={() => { SuccessToast({ text: 'Proximamente!' }) }}
-          >Comprar</button>
+          >Comprar</Link>
           <span
             className={`${quicksand.className} border text-sm sm:text-base border-malachite-300 bg-gradient-green rounded-lg py-[0.12rem] px-2 font-medium text-malachite-950`}
           >

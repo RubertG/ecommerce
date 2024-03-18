@@ -50,7 +50,7 @@ export const useCart = (): TypeCartOptions => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'api-key': `beret-${process.env.NEXT_PUBLIC_API_KEY}`
+        'api-key': `bearer-${process.env.NEXT_PUBLIC_API_KEY}`
       },
       body: JSON.stringify(state.cart)
     })

@@ -5,10 +5,11 @@ import { ShoppingCartIcon, StartIcon } from './Icons'
 import { quicksand } from '../fonts/fonts'
 import { type TypeProduct } from '@/types'
 import { useCartContext } from '../hooks/useCartContext'
-import { SuccessToast } from './toasts'
+import { useRouter } from 'next/navigation'
 
 export const ProductDetails: FC<TypeProduct> = ({ image, price, rate, title, description, id, category }) => {
-  const { addProduct } = useCartContext()
+  const { addProduct, state } = useCartContext()
+  const router = useRouter()
 
   return (
     <section
@@ -55,7 +56,13 @@ export const ProductDetails: FC<TypeProduct> = ({ image, price, rate, title, des
             </button>
             <button
               className='py-[0.125rem] px-4 bg-gradient-blue text-sm sm:text-base font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow '
-              onClick={() => { SuccessToast({ text: 'Coming soon...' }) }}
+              onClick={() => {
+                const index = state.cart.products.findIndex(p => p.id === id)
+                if (index === -1) {
+                  addProduct({ id, category, description, image, price, rate, title })
+                }
+                router.push(`/checkout_cart/${state.cart.id.split('cart-')[1]}/${id}`)
+              }}
             >
               Comprar
             </button>

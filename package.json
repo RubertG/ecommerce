@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mercadopago/sdk-react": "^0.0.18",
     "firebase": "^10.7.2",
     "lodash": "^4.17.21",
+    "mercadopago": "^2.0.8",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",

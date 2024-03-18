@@ -4,7 +4,7 @@ import { Oval } from 'react-loader-spinner'
 import { inter, quicksand } from '../fonts/fonts'
 import { useCartContext } from '../hooks/useCartContext'
 import { CardCartProduct } from './CardCartProduct'
-import { SuccessToast } from './toasts'
+import Link from 'next/link'
 
 export const CartProducts = () => {
   const { deleteProduct, resProduct, state, sumProduct, loading } = useCartContext()
@@ -34,6 +34,7 @@ export const CartProducts = () => {
                   deleteProduct={deleteProduct}
                   resProduct={resProduct}
                   sumProduct={sumProduct}
+                  idCart={state.cart.id}
                 />
               })
               : (
@@ -67,32 +68,32 @@ export const CartProducts = () => {
             !loading
               ? state.cart.products.map(product => {
                 return <li
-                className='flex items-center justify-between'
-                key={product.id}>
-                <p
-                  className={`${quicksand.className} text-ellipsis whitespace-nowrap overflow-hidden font-bold text-mercury-900 text-sm`}
-                >
-                  {product.title}
-                </p>
-                <span
-                  className={`${inter.className} font-medium text-mercury-900`}
-                >${(product.price * product.quantity).toFixed(2)}</span>
-              </li>
+                  className='flex items-center justify-between'
+                  key={product.id}>
+                  <p
+                    className={`${quicksand.className} text-ellipsis whitespace-nowrap overflow-hidden font-bold text-mercury-900 text-sm`}
+                  >
+                    {product.title}
+                  </p>
+                  <span
+                    className={`${inter.className} font-medium text-mercury-900`}
+                  >${(product.price * product.quantity).toFixed(2)}</span>
+                </li>
               })
               : (
-              <div
-                className='flex items-center justify-center py-5'
-              >
-                <Oval
-                  visible={true}
-                  height="40"
-                  width="40"
-                  color="#0c6290"
-                  secondaryColor='#0c6290'
-                  strokeWidth={3}
-                  ariaLabel="oval-loading"
-                />
-              </div>
+                <div
+                  className='flex items-center justify-center py-5'
+                >
+                  <Oval
+                    visible={true}
+                    height="40"
+                    width="40"
+                    color="#0c6290"
+                    secondaryColor='#0c6290'
+                    strokeWidth={3}
+                    ariaLabel="oval-loading"
+                  />
+                </div>
                 )
           }
           <li
@@ -107,10 +108,10 @@ export const CartProducts = () => {
               className='font-bold text-lg text-mercury-950'
             >${state.cart.total.toFixed(2)}</span>
           </li>
-          <button
-            onClick={() => { SuccessToast({ text: 'Proximamente!' }) }}
-            className='w-full py-2 px-3 bg-gradient-blue rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow'
-          >Realizar compra</button>
+          <Link
+            href={`/checkout_cart/${state.cart.id.split('cart-')[1]}`}
+            className='block text-center w-full py-2 px-3 bg-gradient-blue rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow'
+          >Realizar compra</Link>
         </ul>
       </aside>
     </main>

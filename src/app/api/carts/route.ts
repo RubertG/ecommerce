@@ -3,7 +3,7 @@ import { validateObject } from '@/app/utils/validate-type'
 import { verifyChangeProductsCart } from '@/app/utils/verify-change-products-cart'
 import { EXPECTED_CART_SHAPE } from '@/const'
 import { type TypeCartWithId } from '@/types'
-import { NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function GET () {
   try {
@@ -17,7 +17,7 @@ export async function GET () {
   }
 }
 
-export async function POST (request: Request) {
+export async function POST (request: NextRequest) {
   try {
     const res = await request.json()
     const verify = validateObject<TypeCartWithId>(res, EXPECTED_CART_SHAPE)

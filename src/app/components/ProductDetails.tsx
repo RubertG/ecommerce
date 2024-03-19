@@ -1,32 +1,13 @@
 'use client'
 
-import { useEffect, type FC, useState } from 'react'
+import { type FC } from 'react'
 import { ShoppingCartIcon, StartIcon } from './Icons'
 import { quicksand } from '../fonts/fonts'
 import { type TypeProduct } from '@/types'
 import { useCartContext } from '../hooks/useCartContext'
-import { useRouter } from 'next/navigation'
 
 export const ProductDetails: FC<TypeProduct> = ({ image, price, rate, title, description, id, category }) => {
-  const { addProduct, state } = useCartContext()
-  const [isBuy, setIsBuy] = useState(false)
-  const router = useRouter()
-
-  useEffect(() => {
-    const index = state.cart.products.findIndex(p => p.id === id)
-    if (isBuy && index !== -1) {
-      router.push(`/checkout_cart/${state.cart.id_user}/${id}`)
-      setIsBuy(false)
-    }
-  }, [state, isBuy])
-
-  const handleBuy = () => {
-    const index = state.cart.products.findIndex(p => p.id === id)
-    if (index === -1) {
-      addProduct({ id, category, description, image, price, rate, title })
-    }
-    setIsBuy(true)
-  }
+  const { addProduct, handleBuy } = useCartContext()
 
   return (
     <section
@@ -73,7 +54,7 @@ export const ProductDetails: FC<TypeProduct> = ({ image, price, rate, title, des
             </button>
             <button
               className='py-[0.125rem] px-4 bg-gradient-blue text-sm sm:text-base font-medium rounded-lg border-Lochmara-600 text-Lochmara-50 border-2 hover:shadow-blue-custom transition-shadow '
-              onClick={handleBuy}
+              onClick={() => { handleBuy({ id, category, description, image, price, rate, title }) }}
             >
               Comprar
             </button>

@@ -20,6 +20,7 @@ interface Props {
 
 const CheckoutPage: FC<Props> = async ({ params: { ids } }) => {
   const cart = await getData(ids)
+  console.log(cart)
 
   if (cart.products == null || cart.products?.length === 0) {
     return <h1>Error al obtener el carrito</h1>

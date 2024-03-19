@@ -1,11 +1,12 @@
 'use client'
 
-import { type TypeCartOptions, type TypeStateReducerCart, type TypeProduct, type TypeProductsCart } from '@/types'
+import { type TypeCartOptions, type TypeStateReducerCart, type TypeProduct, type TypeProductsCart, type TypeIdProduct } from '@/types'
 import { useEffect, useReducer, useState } from 'react'
 import { reducerCart } from '../reducer/reducerCart'
 import { useAuthContext } from './useAuthContext'
 import { isEqual } from 'lodash'
 import { AlertToast, ProcessToast, SuccessToast } from '../components/toasts'
+import { useRouter } from 'next/navigation'
 
 const initialState: TypeStateReducerCart = {
   error: '',
@@ -27,6 +28,8 @@ export const useCart = (): TypeCartOptions => {
   const { user } = useAuthContext()
   const [state, dispatch] = useReducer(reducerCart, initialState)
   const [loading, setLoading] = useState(false)
+  const [buyId, setBuyId] = useState<TypeIdProduct>()
+  const router = useRouter()
 
   useEffect(() => {
     if (user == null) return
@@ -61,6 +64,22 @@ export const useCart = (): TypeCartOptions => {
       .catch(() => {
         dispatch({ type: 'SET_ERROR', payload: 'Error al guardar en el carrito' })
       })
+      .finally(() => {
+        if (buyId != null) {
+          router.push(`/checkout_cart/${state.cart.id_user}/${buyId}`)
+        }
+        setBuyId(undefined)
+      })
+  }
+
+  const handleBuy = (product: TypeProduct) => {
+    const index = state.cart.products.findIndex(p => p.id === product.id)
+    if (index === -1) {
+      addProduct(product)
+      setBuyId(product.id)
+    } else {
+      router.push(`/checkout_cart/${state.cart.id_user}/${state.cart.products[index].id}`)
+    }
   }
 
   const getData = async () => {
@@ -124,6 +143,7 @@ export const useCart = (): TypeCartOptions => {
     state,
     sumProduct,
     resProduct,
-    loading
+    loading,
+    handleBuy
   }
 }

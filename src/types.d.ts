@@ -47,6 +47,7 @@ export interface TypeAuthOptions {
 
 export interface TypeCartOptions {
   addProduct: (product: TypeProduct) => void
+  handleBuy: (product: TypeProduct) => void
   deleteProduct: (product: TypeProductsCart) => void
   state: TypeStateReducerCart
   sumProduct: (product: TypeProductsCart) => void

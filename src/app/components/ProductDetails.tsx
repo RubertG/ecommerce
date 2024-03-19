@@ -13,8 +13,9 @@ export const ProductDetails: FC<TypeProduct> = ({ image, price, rate, title, des
   const router = useRouter()
 
   useEffect(() => {
-    if (isBuy && state.cart.id != null) {
-      router.push(`/checkout_cart/${state.cart.id.split('cart-')[1]}/${id}`)
+    const index = state.cart.products.findIndex(p => p.id === id)
+    if (isBuy && index !== -1) {
+      router.push(`/checkout_cart/${state.cart.id_user}/${id}`)
       setIsBuy(false)
     }
   }, [state, isBuy])

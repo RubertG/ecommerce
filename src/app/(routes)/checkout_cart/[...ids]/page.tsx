@@ -34,6 +34,7 @@ const CheckoutPage: FC<Props> = async ({ params: { ids } }) => {
       return false
     })
   }
+  console.log(cart)
 
   return (
     <main

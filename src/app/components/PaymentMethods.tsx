@@ -57,7 +57,7 @@ export const PaymentMethods: FC<Props> = ({ cart }) => {
     <>
       {
         preferenceId != null && (
-          <Wallet initialization={{ preferenceId }} />
+          <Wallet initialization={{ preferenceId, redirectMode: 'blank' }} />
         )
       }
       {

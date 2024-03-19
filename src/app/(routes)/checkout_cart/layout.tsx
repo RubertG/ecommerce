@@ -22,17 +22,8 @@ const LayoutCheckout: FC<Props> = ({ children }) => {
                 className={`${quicksand.className} text-xl text-dodger-blue-950 font-bold py-4 px-4 text-center`}
               >Resumen de la compra</h2>
               <div
-                className='flex items-center justify-center py-5 border-t-2 border-t-gray-custom'
+                className='flex items-center justify-center py-5 border-t-2 border-t-gray-custom h-20'
               >
-                <div
-                  className='my-3'
-                >
-                  <Skeleton className='rounded-lg py-1 md:py-2 px-2 font-medium w-full h-12' />
-                  <div
-                    className='overflow-hidden w-20 m-auto'>
-                    <Skeleton className='rounded-lg px-2 font-medium' />
-                  </div>
-                </div>
               </div>
               <footer
                 className='flex items-center justify-between py-3 px-3 border-t-2 border-t-gray-custom'

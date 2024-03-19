@@ -19,7 +19,7 @@ export async function POST (request: NextRequest) {
         ...item,
         quantity: parseFloat(item.quantity as string),
         unit_price: parseInt(item.unit_price as string),
-        currency_id: 'COL'
+        currency_id: 'COP'
       }
     })
     const preference = new Preference(client)
@@ -27,9 +27,9 @@ export async function POST (request: NextRequest) {
       body: {
         items,
         back_urls: {
-          success: 'https://fake-ecommerce-eta.vercel.app/',
+          success: 'https://fake-ecommerce-eta.vercel.app/products',
           failure: 'https://fake-ecommerce-eta.vercel.app/products',
-          pending: 'https://fake-ecommerce-eta.vercel.app/products?search=a'
+          pending: 'https://fake-ecommerce-eta.vercel.app/products'
         },
         auto_return: 'approved'
       }

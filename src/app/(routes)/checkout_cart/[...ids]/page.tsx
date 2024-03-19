@@ -37,7 +37,7 @@ const CheckoutPage: FC<Props> = async ({ params: { ids } }) => {
 
   return (
     <main
-      className='min-h-[70vh] grid gap-2 xl:gap-6 px-3 my-10 lg:max-w-5xl m-auto xl:px-0 lg:grid-cols-[60%,40%] items-start max-w-2xl animate-enter mt-20 mb-10'
+      className='lg:min-h-[70vh] grid gap-2 xl:gap-4 px-3 my-10 lg:max-w-5xl m-auto xl:px-0 lg:grid-cols-[60%,40%] items-start max-w-2xl animate-enter mt-20 mb-24 lg:mb-10'
     >
       <section
         className='bg-white-custom border-2 border-gray-custom shadow-gray-custom overflow-hidden rounded-lg'
@@ -107,7 +107,7 @@ const CheckoutPage: FC<Props> = async ({ params: { ids } }) => {
           className={`${quicksand.className} text-xl text-dodger-blue-950 font-bold py-4 px-4 text-center border-b-2 border-gray-custom`}>
           Metodos de pago</h1>
         <div
-          className='px-3 min-h-24'
+          className='px-3 min-h-20'
         >
           <PaymentMethods cart={cart} />
         </div>

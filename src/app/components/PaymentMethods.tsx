@@ -2,7 +2,7 @@
 
 import { type TypeCart } from '@/types'
 import { Wallet, initMercadoPago } from '@mercadopago/sdk-react'
-import { useState, type FC, useEffect, Suspense } from 'react'
+import { useState, type FC, useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton'
 
 interface Props {
@@ -10,8 +10,9 @@ interface Props {
 }
 
 export const PaymentMethods: FC<Props> = ({ cart }) => {
-  const [preference, setPreference] = useState<string>()
+  const [preferenceId, setPreferenceId] = useState<string>()
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   initMercadoPago(String(process.env.NEXT_PUBLIC_PUBLIC_KEY), {
     locale: 'es-CO'
   })
@@ -22,6 +23,7 @@ export const PaymentMethods: FC<Props> = ({ cart }) => {
 
   const createPreference = async () => {
     try {
+      setLoading(true)
       const items = cart.products.map(product => ({
         title: product.title,
         unit_price: product.price,
@@ -38,38 +40,38 @@ export const PaymentMethods: FC<Props> = ({ cart }) => {
           revalidate: 0
         }
       })
-      const preferenceId = await res.json()
-      if (typeof preferenceId.id === 'string') {
-        setPreference(preferenceId.id as string)
+      const preference = await res.json()
+      if (typeof preference.id === 'string') {
+        setPreferenceId(preference.id as string)
       } else {
         throw new Error()
       }
     } catch (error) {
       setError('Error al crear la preferencia')
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
     <>
       {
-        preference != null && (
-          <Suspense
-          fallback={
-            <footer
-              className='my-3'
-            >
-              <Skeleton className='rounded-lg py-1 md:py-2 px-2 font-medium w-full h-12' />
-              <div
-                className='overflow-hidden w-40 m-auto'>
-                <Skeleton className='rounded-lg px-2 font-medium' />
-              </div>
-            </footer>
-          }
-          >
-            <Wallet initialization={{ preferenceId: preference }} />
-          </Suspense>
+        preferenceId != null && (
+          <Wallet initialization={{ preferenceId }} />
         )
-
+      }
+      {
+        loading && (
+          <footer
+            className='my-3'
+          >
+            <Skeleton className='rounded-lg py-1 md:py-2 px-2 font-medium w-full h-12' />
+            <div
+              className='overflow-hidden w-40 m-auto'>
+              <Skeleton className='rounded-lg px-2 font-medium' />
+            </div>
+          </footer>
+        )
       }
       {
         error !== '' && <p>{error}</p>

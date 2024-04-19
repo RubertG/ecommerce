@@ -20,3 +20,15 @@ This project has Firebase's database and authentication. The API and frontend ar
                   **POST**: Save cart (Private)        
 
   - ```/[id]``` -> **GET**: Get the cart by id
+
+## Application pages 
+
+- ```/``` -> Landing page
+
+- ```/products``` -> All products with filters
+
+- ```/product/[id]``` -> Product details
+
+- ```/cart/[id_user]``` -> Cart details
+
+- ```/checkout_cart/[id_user]``` -> Checkout cart for payment  
